@@ -8,6 +8,9 @@ public class Personaje
     public string nombre;
     public float multiplicadorDinero = 1;
     public int felicidad = 0;
+    public string descripcion = "";
+    public int dineroInicial = 0;
+    public Sprite sprite;
 
     private int max_Felicidad = 5;
     private int min_Felicidad = -5;
