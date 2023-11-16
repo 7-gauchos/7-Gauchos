@@ -22,8 +22,7 @@ public class UIManager : MonoBehaviour {
     private void Start() {
         accionManager.CrearAcciones();
         accionManager.DefinirValoresAcciones(personajeManager.personajes);
-        RefrescarTablero();
-        dinero.text = dineroTotal.ToString();
+
     }
 
     public void IncrementarListaDeSelecciones(GameObject item) {
@@ -58,7 +57,6 @@ public class UIManager : MonoBehaviour {
         accionManager.LimpiarAcciones();
         accionManager.CrearAcciones();
         accionManager.DefinirValoresAcciones(personajeManager.personajes);
-        RefrescarTablero();
 
 
         // Se llamo a Jugar desde otro lado (Click Hacer accion)
@@ -100,30 +98,7 @@ public class UIManager : MonoBehaviour {
         // se va a poso comun
     }
 
-    private void RefrescarTablero() {
-        for (int i = 0; i < personajeManager.personajes.Count; i++) {
-            //MARKER Assign the cardManager's cards information to the UI references
 
-            personajeSlots[i].transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = personajeManager.personajes[i].felicidad.ToString();
-            personajeSlots[i].transform.GetChild(1).transform.GetChild(0).GetComponent<Text>().text = personajeManager.personajes[i].multiplicadorDinero.ToString();
-
-            personajeSlots[i].transform.GetChild(2).GetComponent<Text>().text = personajeManager.personajes[i].nombre;
-
-
-        }
-
-        for (int i = 0; i < accionManager.acciones.Count; i++) {
-            //MARKER Assign the cardManager's cards information to the UI references
-
-            accionSlots[i].GetComponent<Image>().sprite = accionManager.acciones[i].accionSprite;
-            accionSlots[i].transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = accionManager.acciones[i].costo_felicidad.ToString();
-            accionSlots[i].transform.GetChild(1).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = accionManager.acciones[i].ganancia.ToString();
-            accionSlots[i].SetActive(true);
-            //personajeSlots[i].transform.GetChild(2).GetComponent<Text>().text = accionManager.acciones[i].nombre;
-
-
-        }
-    }
 
     private void ActivarAcciones() {
         for (int i = 0; i < personajeSlots.Length; i++) {
@@ -146,7 +121,6 @@ public class UIManager : MonoBehaviour {
     public void PasarTurno() {
         ActivarAcciones();
         Debug.Log("Chanchito: " + dineroTotal);
-        dinero.text = dineroTotal.ToString();
         //item.GetComponent<AudioSource>().Play();
         if (dineroTotal <= 50) {
 
