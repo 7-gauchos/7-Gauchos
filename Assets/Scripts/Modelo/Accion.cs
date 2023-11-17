@@ -81,7 +81,7 @@ public class Accion
     {
         // Valores de costo de felicidad Rango de [-5,5] + fel del personaje
         int auxF = (int)(Random.Range(Min_Felicidad, MAX_Felicidad + 1));
-        Debug.Log("Valor auxF: "+auxF);
+        // Debug.Log("Valor auxF: "+auxF);
         auxF += value;
         //Debug.Log("Valor auxF+value: "+auxF);
 
