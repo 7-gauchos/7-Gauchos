@@ -8,6 +8,7 @@ public class Personaje
     public string nombre;
     public float multiplicadorDinero = 1;
     public int felicidad = 0;
+    private Accion accion; 
 
     private int max_Felicidad = 5;
     private int min_Felicidad = -5;
@@ -25,6 +26,22 @@ public class Personaje
         UIManager.dineroXRonda += ganancia * multiplicadorDinero;
         RestablecerFelicidad();
     }
+
+    public void setAccion(Accion accion)
+    {
+        this.accion = accion;
+    }
+
+    public void HacerAccion()
+    {
+        float dineroGanado = accion.ganancia * multiplicadorDinero;
+        felicidad += accion.costo_felicidad;
+        UIManager.dineroTotal += dineroGanado;
+        UIManager.dineroXRonda += dineroGanado;
+        RestablecerFelicidad();
+        accion = null;
+    }
+
 
     private void RestablecerFelicidad()
     {

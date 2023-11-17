@@ -8,47 +8,57 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour {
     public PersonajeManager personajeManager;
     public GameObject[] personajeSlots;
+    public GameObject[] personajeStats;
     public AccionManager accionManager;
     public GameObject[] accionSlots;
-    public List<Personaje> PersonajesAplicadosEnAcciones = new List<Personaje>();
     public GameObject botonContinuar;
     public TextMeshProUGUI dinero;
 
     public static float dineroXRonda = 0;
     public static float dineroTotal = 100;
 
-    public int cinco = 5;
-
     private void Start() {
         accionManager.CrearAcciones();
         accionManager.DefinirValoresAcciones(personajeManager.personajes);
-
+        RefrescarTablero();
     }
 
-    public void IncrementarListaDeSelecciones(GameObject item) {
-        for (int i = 0; i < personajeManager.personajes.Count; i++) {
-            if (personajeSlots[i] == item && !PersonajesAplicadosEnAcciones.Contains(personajeManager.personajes[i])) {
-                PersonajesAplicadosEnAcciones.Add(personajeManager.personajes[i]);
-            }
-
+    private void RefrescarTablero()
+    {
+        dinero.text = dineroTotal.ToString();
+        for (int i = 0; i < accionManager.acciones.Count; i++)
+        {
+            accionSlots[i].GetComponent<Image>().sprite = accionManager.acciones[i].accionSprite;
+            accionSlots[i].transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = accionManager.acciones[i].costo_felicidad.ToString();
+            accionSlots[i].transform.GetChild(1).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = accionManager.acciones[i].ganancia.ToString();
+            accionSlots[i].SetActive(true);
         }
-        // Debug.Log("Tamaño de Personajes Aplicados" + PersonajesAplicadosEnAcciones.Count.ToString());
-    }
 
-    public void DisminuirListaDeSelecciones(GameObject item) {
-        for (int i = 0; i < personajeManager.personajes.Count; i++) {
-            if (personajeSlots[i] == item)
-                PersonajesAplicadosEnAcciones.Remove(personajeManager.personajes[i]);
+        for (int i = 0; i < personajeManager.personajes.Count; i++)
+        {
+            personajeStats[i].transform.GetChild(0).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = personajeManager.personajes[i].felicidad.ToString();
+            personajeStats[i].transform.GetChild(1).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = personajeManager.personajes[i].multiplicadorDinero.ToString();
         }
-        // Debug.Log("Tamaño de Personajes Aplicados" + PersonajesAplicadosEnAcciones.Count.ToString());
     }
 
     public void RevisarSiTenemosQueMostrarBoton() {
-        if (PersonajesAplicadosEnAcciones.Count == 3) {
-            botonContinuar.SetActive(true);
-        } else {
-            botonContinuar.SetActive(false);
+        int count = 1;
+        for (int i = 0; i < accionSlots.Length; i++)        {
+
+            if (accionSlots[i].GetComponent<Carta_Accion>().dropping != null)
+            {
+                count++;
+            }
         }
+
+        botonContinuar.SetActive(count == 3);
+    }
+
+    public void AsignarAccionAPersonaje(Carta_Accion c)
+    {
+        int test2 = System.Array.IndexOf(accionSlots, c.gameObject);
+        int test = System.Array.IndexOf(personajeSlots, c.transform.parent.gameObject);
+        personajeManager.personajes[test].setAccion(accionManager.acciones[test2]);
     }
 
 
@@ -57,32 +67,9 @@ public class UIManager : MonoBehaviour {
         accionManager.LimpiarAcciones();
         accionManager.CrearAcciones();
         accionManager.DefinirValoresAcciones(personajeManager.personajes);
+        RefrescarTablero();
 
-
-        // Se llamo a Jugar desde otro lado (Click Hacer accion)
-        // bool mostrarResumen = r.aumentarDia();
-        // if (mostrarResumen)
-        // {
-        //     // Invoca un evento para mostrar valores le pasamos dineroXRonda
-        //     Debug.Log("Dinero de la ronda: " + dineroXRonda);
-        //     dineroXRonda = 0;
-        // }
-        //am.DefinirValoresAcciones(pm.listaPersonajes_.Find(p=>p.Nombre_=="Pepe").Felicidad_,0);
-
-        // Redefine acciones con random fel PJ
-
-        // am.DefinirValoresAcciones(pm.DevolverFelicidad());
-        // var listAccionesAlAzar = am.listaAcciones_.OrderBy(x => UnityEngine.Random.value).ToList();
         float dineroXdia = 0;
-        // for (int i = 0; i < listAccionesAlAzar.Count; i++)
-        // {
-        //     // Debug.Log("Accion[" + i + "] Ganancia: " + listAccionesAlAzar[i].Ganancia_ + "Costo F :( " + listAccionesAlAzar[i].Costo_felicidad);
-        //     // pm.RealizarAccion(listAccionesAlAzar[i].Ganancia_, listAccionesAlAzar[i].Costo_felicidad, pm.listaPersonajes_[i].Nombre_);
-
-        //     dineroXdia = (int)(pm.listaPersonajes_[i].MultiplicadorDinero_ * listAccionesAlAzar[i].Ganancia_);
-        //     dineroTotal += dineroXdia;
-        // }
-
         dineroXRonda += dineroXdia;
     }
 
@@ -100,42 +87,34 @@ public class UIManager : MonoBehaviour {
 
 
 
-    private void ActivarAcciones() {
-        for (int i = 0; i < personajeSlots.Length; i++) {
-            GameObject item2 = personajeSlots[i].transform.parent.gameObject;
-            // Debug.Log("ParentName" + item2.name);
-            Accion accionTemp = accionManager.acciones[i];
-            personajeManager.personajes[i].HacerAccion(accionTemp.ganancia, accionTemp.costo_felicidad);
+    private void ConsumirAcciones() {
+        for (int i = 0; i < personajeManager.personajes.Count; i++)
+        {
+            personajeManager.personajes[i].HacerAccion();
         }
     }
 
-    private void ResetPosicionDePersonajes() {
-
-        for (int i = 0; i < personajeSlots.Length; i++) {
-            Carta_Accion test = FindObjectOfType<Carta_Accion>();
-            personajeSlots[i].transform.position = personajeSlots[i].transform.GetComponent<Carta_Accion>().initialPosition;
-            DisminuirListaDeSelecciones(personajeSlots[i]);
+    private void ResetPosicionDeAcciones() {
+        for (int i = 0; i < accionSlots.Length; i++) {
+            accionSlots[i].GetComponent<Carta_Accion>().ATuCasa();
         }
     }
 
     public void PasarTurno() {
-        ActivarAcciones();
-        Debug.Log("Chanchito: " + dineroTotal);
+        ConsumirAcciones();
+
         //item.GetComponent<AudioSource>().Play();
         if (dineroTotal <= 50) {
-
             SceneManager.LoadScene(5);
         }
 
-        if (101 <= dineroTotal) {
-
+        if (dineroTotal >= 150 ) {
             SceneManager.LoadScene(6);
-            Debug.Log("Chanchitooooooooooooo: " + cinco);
-           
-            ResetPosicionDePersonajes();
-            RevisarSiTenemosQueMostrarBoton();
-            Jugar();
         }
+
+        ResetPosicionDeAcciones();
+        RevisarSiTenemosQueMostrarBoton();
+        Jugar();
     }
 
 }
