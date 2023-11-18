@@ -139,7 +139,7 @@ public class GeneratorQuote
             { "Ocio", (F_Ocio, D_Ocio) },
             { "Descanso", (F_Descanso, D_Descanso) },
             { "Suerte", (F_Suerte, D_Suerte) },
-            { "Desastre", (F_Desastre, D_Desastre) }
+            { "Catastrofe", (F_Desastre, D_Desastre) }
             
         };
     }
