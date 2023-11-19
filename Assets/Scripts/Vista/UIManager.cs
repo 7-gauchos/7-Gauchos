@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour {
     public AccionManager accionManager;
     public GameObject[] accionSlots;
     public GameObject botonContinuar;
-    public TextMeshProUGUI dinero;
+    public ContadorDinero dinero;
 
     public static float dineroXRonda = 0;
     public static float dineroTotal = 100;
@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour {
         accionManager.CrearAcciones();
         accionManager.DefinirValoresAcciones(personajeManager.personajes);
         RefrescarTablero();
+        dinero.setDinero(dineroTotal);
     }
 
     private void RefrescarTablero()
@@ -85,6 +86,42 @@ public class UIManager : MonoBehaviour {
         // se va a poso comun
     }
 
+     private void RefrescarTablero()
+    {
+        for(int i = 0; i < personajeManager.personajes.Count; i++)
+        {
+            //MARKER Assign the cardManager's cards information to the UI references
+
+            //personajeSlots[i].transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = personajeManager.personajes[i].felicidad.ToString();
+            //personajeSlots[i].transform.GetChild(1).transform.GetChild(0).GetComponent<Text>().text = personajeManager.personajes[i].multiplicadorDinero.ToString();
+
+            //personajeSlots[i].transform.GetChild(2).GetComponent<Text>().text = personajeManager.personajes[i].nombre;       
+
+
+        }
+
+        for (int i = 0; i < accionManager.acciones.Count; i++)
+        {
+            //MARKER Assign the cardManager's cards information to the UI references
+
+            accionSlots[i].GetComponent<Image>().sprite = accionManager.acciones[i].accionSprite;
+            accionSlots[i].transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = accionManager.acciones[i].costo_felicidad.ToString();
+            accionSlots[i].transform.GetChild(1).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = accionManager.acciones[i].ganancia.ToString();
+            accionSlots[i].SetActive(false);
+            //personajeSlots[i].transform.GetChild(2).GetComponent<Text>().text = accionManager.acciones[i].nombre;
+            StartCoroutine(aparecerIndividualmente());
+
+        }
+    }
+    IEnumerator aparecerIndividualmente()
+    {
+        for (int i = 0; i < accionManager.acciones.Count; i++)
+        {
+            yield return new WaitForSecondsRealtime(0.5f);
+            accionSlots[i].SetActive(true);
+            accionSlots[i].GetComponent<Animator>().Play("caida");
+        }
+    }
 
 
     private void ConsumirAcciones() {
@@ -102,7 +139,7 @@ public class UIManager : MonoBehaviour {
 
     public void PasarTurno() {
         ConsumirAcciones();
-
+        StartCoroutine(dinero.EfectoDeCambio(dineroXRonda,dineroTotal-dineroXRonda));
         //item.GetComponent<AudioSource>().Play();
         if (dineroTotal <= 50) {
             SceneManager.LoadScene(5);
