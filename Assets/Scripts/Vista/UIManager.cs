@@ -24,24 +24,6 @@ public class UIManager : MonoBehaviour {
         dinero.setDinero(dineroTotal);
     }
 
-    private void RefrescarTablero()
-    {
-        dinero.text = dineroTotal.ToString();
-        for (int i = 0; i < accionManager.acciones.Count; i++)
-        {
-            accionSlots[i].GetComponent<Image>().sprite = accionManager.acciones[i].accionSprite;
-            accionSlots[i].transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = accionManager.acciones[i].costo_felicidad.ToString();
-            accionSlots[i].transform.GetChild(1).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = accionManager.acciones[i].ganancia.ToString();
-            accionSlots[i].SetActive(true);
-        }
-
-        for (int i = 0; i < personajeManager.personajes.Count; i++)
-        {
-            personajeStats[i].transform.GetChild(0).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = personajeManager.personajes[i].felicidad.ToString();
-            personajeStats[i].transform.GetChild(1).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = personajeManager.personajes[i].multiplicadorDinero.ToString();
-        }
-    }
-
     public void RevisarSiTenemosQueMostrarBoton() {
         int count = 1;
         for (int i = 0; i < accionSlots.Length; i++)        {
@@ -111,6 +93,12 @@ public class UIManager : MonoBehaviour {
             //personajeSlots[i].transform.GetChild(2).GetComponent<Text>().text = accionManager.acciones[i].nombre;
             StartCoroutine(aparecerIndividualmente());
 
+        }
+
+        for (int i = 0; i < personajeManager.personajes.Count; i++)
+        {
+            personajeStats[i].transform.GetChild(0).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = personajeManager.personajes[i].felicidad.ToString();
+            personajeStats[i].transform.GetChild(1).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = personajeManager.personajes[i].multiplicadorDinero.ToString();
         }
     }
     IEnumerator aparecerIndividualmente()
