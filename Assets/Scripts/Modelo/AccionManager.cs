@@ -30,7 +30,7 @@ public class AccionManager : MonoBehaviour
             }
 
         }*/
-        Debug.Log(personajes.Count.ToString());
+        //Debug.Log(personajes.Count.ToString());
         for (int i = 0; i < acciones.Count; i++)
         {
             acciones[i].AutoDefinirse(personajes[i].felicidad);
