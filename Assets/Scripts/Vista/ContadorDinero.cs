@@ -10,7 +10,8 @@ public class ContadorDinero : MonoBehaviour
 
     public void setDinero(float dinero)
     {
-        textoDinero.text = dinero.ToString();
+        if(textoDinero != null)
+            textoDinero.text = dinero.ToString();
 
     }
     public IEnumerator EfectoDeCambio(float monto, float dinerobase)
