@@ -13,18 +13,18 @@ public class Game : MonoBehaviour {
 
     [SerializeField] GameObject prefabCartaAccion;              // Prefabricado de la Carta Accion
     [SerializeField] Canvas canvasPadre;                        // Padre original de las cartas
-    [SerializeField] TextMeshProUGUI text_Dinero_Conjunto;
+    [SerializeField] ContadorDinero text_Dinero_Conjunto;
+
+    public static float dineroTotal = 100;
 
     private void Awake() {
         // boton continuar inicia desactivado
         botonContinuar_.gameObject.SetActive(false);
-        text_Dinero_Conjunto.text = "0";
-
-
+        
     }
 
     void Start() {
-
+        text_Dinero_Conjunto.setDinero(dineroTotal);
     }
 
     void Update() {
@@ -52,7 +52,11 @@ public class Game : MonoBehaviour {
             auxInt+=elem.transform.GetComponent<Personaje>().dineroObtenido;
         }
         // Paso 3) Sumo lo recaudado
-        text_Dinero_Conjunto.text = auxInt.ToString();
+
+        Debug.Log("AuxInt " + auxInt.ToString());
+        Debug.Log("dineroTotal " + dineroTotal.ToString());
+        StartCoroutine(text_Dinero_Conjunto.EfectoDeCambio(auxInt, dineroTotal));
+        dineroTotal += auxInt;
         // Paso 4) Se crean nuevas cartas de Accion 
         List<GameObject> nuevaLista = new List<GameObject>();
         foreach (var elem in Lista_CARTAS_Acciones_) {
@@ -75,6 +79,18 @@ public class Game : MonoBehaviour {
         } 
         // Se actualiza la lista
         Lista_CARTAS_Acciones_ = nuevaLista;
+
+        StartCoroutine(aparecerIndividualmente());
+
+        IEnumerator aparecerIndividualmente()
+        {
+            for (int i = 0; i < Lista_CARTAS_Acciones_.Count; i++)
+            {
+                yield return new WaitForSecondsRealtime(0.5f);
+                Lista_CARTAS_Acciones_[i].SetActive(true);
+                Lista_CARTAS_Acciones_[i].GetComponent<Animator>().Play("caida");
+            }
+        }
 
     }
 

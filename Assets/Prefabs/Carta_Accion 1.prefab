@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 5866614202205090523}
   - component: {fileID: 5552738571609851794}
   - component: {fileID: 2969607535910711622}
+  - component: {fileID: 94089460010562409}
   m_Layer: 5
   m_Name: Carta_Accion 1
   m_TagString: Untagged
@@ -241,7 +242,6 @@ MonoBehaviour:
   texto_felicidad: {fileID: 2873537578584424485}
   texto_dinero: {fileID: 8235614023085261870}
   texto_de_descripcion: {fileID: 0}
-  rutaSprite: Assets/Sprites/Cartas/Catastrofe.png
 --- !u!114 &2969607535910711622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,6 +257,27 @@ MonoBehaviour:
   initialPosition: {x: 0, y: 0}
   originalParent: {fileID: 0}
   dropping: {fileID: 0}
+--- !u!95 &94089460010562409
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4132277161399671156}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c6ba28055c04d6b41bf0cf2d29388559, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4155655547101845386
 GameObject:
   m_ObjectHideFlags: 0
