@@ -1,0 +1,104 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
+public class SeleccionPersonajes : MonoBehaviour
+{
+    public Personaje personajeEnPantalla;
+    public Personaje[] personajesSeleccionables;
+    public GameObject[] personajesEnScroll;
+    public TMP_Text nombreEnPantalla;
+    public TMP_Text ModificadorDineroEnPantalla;
+    public TMP_Text MedidorFelicidadEnPantalla;
+    public TMP_Text descripcionEnPantalla;
+    public TMP_Text dineroInicialEnPantalla;
+    public GameObject imagenEnPantalla;
+    public GameObject[] personajesEnUIEquipo;
+    public List<Personaje> personajesEnEquipo = new List<Personaje>();
+    public GameObject botonAgregar;
+    public GameObject botonQuitar;
+    public TMP_Text MontoInicialxEquipo;
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        imagenEnPantalla.GetComponent<Image>().enabled = false;
+        for (int i = 0; i < personajesSeleccionables.Length; i++)
+        {
+            personajesEnScroll[i].GetComponent<Image>().sprite = personajesSeleccionables[i].sprite;
+
+        }
+        for (int i = 0; i < personajesEnUIEquipo.Length; i++)
+        {
+            personajesEnUIEquipo[i].SetActive(false);
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(personajeEnPantalla.nombre != "")
+        {
+            nombreEnPantalla.text = personajeEnPantalla.nombre;
+            ModificadorDineroEnPantalla.text = personajeEnPantalla.multiplicadorDinero.ToString();
+            MedidorFelicidadEnPantalla.text = personajeEnPantalla.felicidad.ToString();
+            descripcionEnPantalla.text = personajeEnPantalla.descripcion;
+            dineroInicialEnPantalla.text = personajeEnPantalla.dineroInicial.ToString();
+            imagenEnPantalla.GetComponent<Image>().sprite = personajeEnPantalla.sprite;
+            imagenEnPantalla.GetComponent<Image>().enabled = true;
+            if (personajesEnEquipo.Contains(personajeEnPantalla))
+            {
+                botonAgregar.SetActive(false);
+                botonQuitar.SetActive(true);
+            }
+            else
+            {
+                botonAgregar.SetActive(true);
+                botonQuitar.SetActive(false);
+            }
+        }
+    }
+
+    public void test(int i)
+    {
+        personajeEnPantalla = personajesSeleccionables[i];
+    }
+
+    public void agregarPersonajeAlEquipo()
+    {
+        if (!personajesEnEquipo.Contains(personajeEnPantalla) && personajesEnEquipo.Count < 3)
+        {
+            personajesEnEquipo.Add(personajeEnPantalla);
+            int i = personajesEnEquipo.IndexOf(personajeEnPantalla);
+
+
+                personajesEnUIEquipo[i].GetComponent<Image>().sprite = personajeEnPantalla.sprite;
+                personajesEnUIEquipo[i].SetActive(true);
+                MontoInicialxEquipo.text = (int.Parse(MontoInicialxEquipo.text) + personajeEnPantalla.dineroInicial).ToString();
+        }
+
+    }
+
+    public void quitarPersonajeDelEquipo()
+    {
+        if (personajesEnEquipo.Contains(personajeEnPantalla))
+        {
+            
+            int i = personajesEnEquipo.IndexOf(personajeEnPantalla);
+            while (i + 1 < personajesEnEquipo.Count)
+            {
+                personajesEnUIEquipo[i].GetComponent<Image>().sprite = personajesEnUIEquipo[i + 1].GetComponent<Image>().sprite;
+                i++;
+            }
+
+            personajesEnUIEquipo[i].GetComponent<Image>().sprite = null;
+            personajesEnUIEquipo[i].SetActive(false);
+            MontoInicialxEquipo.text = (int.Parse(MontoInicialxEquipo.text) - personajeEnPantalla.dineroInicial).ToString();
+            personajesEnEquipo.Remove(personajeEnPantalla);
+        }
+
+    }
+}
