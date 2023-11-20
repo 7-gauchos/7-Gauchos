@@ -15,8 +15,6 @@ public class Game : MonoBehaviour {
     [SerializeField] Canvas canvasPadre;                        // Padre original de las cartas
     [SerializeField] ContadorDinero text_Dinero_Conjunto;
 
-    public static float dineroTotal = 100;
-
     private void Awake() {
         // boton continuar inicia desactivado
         botonContinuar_.gameObject.SetActive(false);
@@ -24,7 +22,12 @@ public class Game : MonoBehaviour {
     }
 
     void Start() {
-        text_Dinero_Conjunto.setDinero(dineroTotal);
+        int dineroArranque = 0;
+        foreach (var elem in Lista_Paneles_Personajes)
+        {
+            dineroArranque += elem.transform.GetComponent<Personaje>().dineroObtenido;
+        }
+        text_Dinero_Conjunto.setDinero(dineroArranque);
     }
 
     void Update() {
@@ -40,10 +43,12 @@ public class Game : MonoBehaviour {
         }
     }
     //Esto implica crear nuevas cartas y asociar a la lista de "CARTAS" los nuevos sprites y valores. 
-    public void PasarDia() {
-        int auxInt=0;
+    public void PasarDia(){ 
+        int auxInt = 0;
+        int dineroBase = 0;
         // Paso 1) Los personajes realizan las acciones
-        foreach(var elem in Lista_Paneles_Personajes) {
+        foreach (var elem in Lista_Paneles_Personajes) {
+            dineroBase += elem.transform.GetComponent<Personaje>().dineroObtenido;
             var costo_Fel = elem.transform.GetComponent<Drop>().transform.GetChild(0).GetComponent<Accion>().Costo_felicidad;
             var dinero = elem.transform.GetComponent<Drop>().transform.GetChild(0).GetComponent<Accion>().Dinero;
             elem.transform.GetComponent<Personaje>().HacerAccion(dinero,costo_Fel);
@@ -52,11 +57,7 @@ public class Game : MonoBehaviour {
             auxInt+=elem.transform.GetComponent<Personaje>().dineroObtenido;
         }
         // Paso 3) Sumo lo recaudado
-
-        Debug.Log("AuxInt " + auxInt.ToString());
-        Debug.Log("dineroTotal " + dineroTotal.ToString());
-        StartCoroutine(text_Dinero_Conjunto.EfectoDeCambio(auxInt, dineroTotal));
-        dineroTotal += auxInt;
+        StartCoroutine(text_Dinero_Conjunto.EfectoDeCambio(auxInt-dineroBase, dineroBase));
         // Paso 4) Se crean nuevas cartas de Accion 
         List<GameObject> nuevaLista = new List<GameObject>();
         foreach (var elem in Lista_CARTAS_Acciones_) {
