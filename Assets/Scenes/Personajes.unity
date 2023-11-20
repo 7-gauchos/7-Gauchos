@@ -371,43 +371,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bdfb26009a2d814ea2c945099ce7517, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  personajeEnPantalla:
-    nombre: 
-    multiplicadorDinero: 0
-    felicidad: 0
-    descripcion: 
-    dineroInicial: 0
-    sprite: {fileID: 0}
+  personajeEnPantalla: {fileID: 1684783989}
   personajesSeleccionables:
-  - nombre: Cacha
-    multiplicadorDinero: 3
-    felicidad: -1
-    descripcion: "29 a\xF1os, laburante desde la cuna, la mejor trabajadora que podes
-      pedir. Pero poco reconocida en su trabajo lo que la deprime un poco. Su Hobby:
-      ver a Boca"
-    dineroInicial: 400
-    sprite: {fileID: 21300000, guid: c5eca34b2607b8a449f2d02529023e51, type: 3}
-  - nombre: Pachorra
-    multiplicadorDinero: 1
-    felicidad: 2
-    descripcion: "23 a\xF1os, su enemigo mortal \"la pala\", debe enfrentarlo para
-      que sus compa\xF1eros no le peguen un boleo en el ****. Su hobby: dormir tremendamente."
-    dineroInicial: 300
-    sprite: {fileID: 21300000, guid: 6c0491680ec43ec4783af9ee95bcdb24, type: 3}
-  - nombre: Pepe
-    multiplicadorDinero: 2
-    felicidad: 0
-    descripcion: "25 a\xF1os, le gusta trabajar pero no se esfuerza mucho. En general
-      esta contento con su vida, que se yo , un tipo promedio.  Su Hobby: le gusta
-      leer."
-    dineroInicial: 300
-    sprite: {fileID: 21300000, guid: f92a1cb354ab93a42995a81f765fb767, type: 3}
-  - nombre: Misterio
-    multiplicadorDinero: 3
-    felicidad: 3
-    descripcion: Es un misterio
-    dineroInicial: 1500
-    sprite: {fileID: 21300000, guid: ea47249a77faecf4bbdfc8e3bfd6db85, type: 3}
+  - {fileID: 1427320949}
+  - {fileID: 1135191464}
+  - {fileID: 2005530768}
+  - {fileID: 1996940930}
   personajesEnScroll:
   - {fileID: 1427320944}
   - {fileID: 1135191459}
@@ -1684,6 +1653,7 @@ GameObject:
   - component: {fileID: 1135191463}
   - component: {fileID: 1135191462}
   - component: {fileID: 1135191461}
+  - component: {fileID: 1135191464}
   m_Layer: 5
   m_Name: Button (1)
   m_TagString: Untagged
@@ -1804,6 +1774,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1135191459}
   m_CullTransparentMesh: 1
+--- !u!114 &1135191464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135191459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 964da4a215c0f8f4394a506dc68aecd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nombre: Pachorra
+  multiplicadorDinero: 1
+  felicidad: 2
+  descripcion: "23 a\xF1os, su enemigo mortal \\\"la pala\\\", debe enfrentarlo para      
+    que sus compa\\xF1eros no le peguen un boleo en el ****. Su hobby: dormir tremendamente."
+  dineroInicial: 300
+  sprite: {fileID: 21300000, guid: 6c0491680ec43ec4783af9ee95bcdb24, type: 3}
+  dineroObtenido: 0
 --- !u!1 &1155378343
 GameObject:
   m_ObjectHideFlags: 0
@@ -2580,6 +2570,7 @@ GameObject:
   - component: {fileID: 1427320948}
   - component: {fileID: 1427320947}
   - component: {fileID: 1427320946}
+  - component: {fileID: 1427320949}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -2700,6 +2691,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1427320944}
   m_CullTransparentMesh: 1
+--- !u!114 &1427320949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1427320944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 964da4a215c0f8f4394a506dc68aecd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nombre: Cacha
+  multiplicadorDinero: 3
+  felicidad: -1
+  descripcion: "29 a\xF1os, laburante desde la cuna, la mejor trabajadora que podes      
+    pedir. Pero poco reconocida en su trabajo lo que la deprime un poco. Su Hobby:      
+    ver a Boca"
+  dineroInicial: 400
+  sprite: {fileID: 21300000, guid: c5eca34b2607b8a449f2d02529023e51, type: 3}
+  dineroObtenido: 0
 --- !u!1 &1462400841
 GameObject:
   m_ObjectHideFlags: 0
@@ -3270,6 +3282,7 @@ GameObject:
   - component: {fileID: 1684783986}
   - component: {fileID: 1684783988}
   - component: {fileID: 1684783987}
+  - component: {fileID: 1684783989}
   m_Layer: 5
   m_Name: Personaje
   m_TagString: Untagged
@@ -3336,6 +3349,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1684783985}
   m_CullTransparentMesh: 1
+--- !u!114 &1684783989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684783985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 964da4a215c0f8f4394a506dc68aecd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nombre: 
+  multiplicadorDinero: 1
+  felicidad: 0
+  descripcion: 
+  dineroInicial: 0
+  sprite: {fileID: 0}
+  dineroObtenido: 0
 --- !u!1 &1719760273
 GameObject:
   m_ObjectHideFlags: 0
@@ -3772,6 +3804,7 @@ GameObject:
   - component: {fileID: 1996940929}
   - component: {fileID: 1996940928}
   - component: {fileID: 1996940927}
+  - component: {fileID: 1996940930}
   m_Layer: 5
   m_Name: Button (3)
   m_TagString: Untagged
@@ -3892,6 +3925,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1996940925}
   m_CullTransparentMesh: 1
+--- !u!114 &1996940930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1996940925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 964da4a215c0f8f4394a506dc68aecd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nombre: Misterio
+  multiplicadorDinero: 3
+  felicidad: 3
+  descripcion: "Es un misterio. Nada se sabe de \xE9l. \xBFo ella?"
+  dineroInicial: 1500
+  sprite: {fileID: 21300000, guid: d2f0891982b4f494bbf9ba6bd948f170, type: 3}
+  dineroObtenido: 0
 --- !u!1 &2005530763
 GameObject:
   m_ObjectHideFlags: 0
@@ -3904,6 +3956,7 @@ GameObject:
   - component: {fileID: 2005530767}
   - component: {fileID: 2005530766}
   - component: {fileID: 2005530765}
+  - component: {fileID: 2005530768}
   m_Layer: 5
   m_Name: Button (2)
   m_TagString: Untagged
@@ -4024,6 +4077,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2005530763}
   m_CullTransparentMesh: 1
+--- !u!114 &2005530768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2005530763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 964da4a215c0f8f4394a506dc68aecd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nombre: Pepe
+  multiplicadorDinero: 2
+  felicidad: 0
+  descripcion: "25 a\xF1os, le gusta trabajar pero no se esfuerza mucho. En general      
+    esta contento con su vida, que se yo , un tipo promedio.  Su Hobby: le gusta      
+    leer."
+  dineroInicial: 300
+  sprite: {fileID: 21300000, guid: f92a1cb354ab93a42995a81f765fb767, type: 3}
+  dineroObtenido: 0
 --- !u!1 &2036524137
 GameObject:
   m_ObjectHideFlags: 0
