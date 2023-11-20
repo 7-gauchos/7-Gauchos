@@ -9,6 +9,9 @@ public class Personaje : MonoBehaviour
     public string nombre;
     public float multiplicadorDinero = 1;
     public int felicidad = 0;
+    public string descripcion = "";
+    public int dineroInicial = 0;
+    public Sprite sprite;
     public int dineroObtenido=0;
     // Variables de Control
     private int max_Felicidad = 5;
