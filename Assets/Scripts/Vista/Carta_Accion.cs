@@ -5,12 +5,12 @@ public class Carta_Accion : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     private Canvas canvas;
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
-    public Vector2 initialPosition; // Nueva variable para almacenar la posición inicial.
-    private Transform originalParent; // Nueva variable para almacenar el padre original.
+    [HideInInspector] public Vector2 initialPosition; // Nueva variable para almacenar la posición inicial.
+    [HideInInspector] public  Transform originalParent; // Nueva variable para almacenar el padre original.
     public Drop dropping;
 
 
-    private void Awake() {
+    private void Start() {
         this.tag = "Carta";
         canvas = GetComponentInParent<Canvas>();
         rectTransform = GetComponent<RectTransform>();
@@ -97,5 +97,9 @@ public class Carta_Accion : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             dropping.espacio_Ocupado_ = false;
         }
         dropping = null;
+    }
+    public void AutoDestruirse() {
+            ATuCasa();
+            Destroy(gameObject);
     }
 }
