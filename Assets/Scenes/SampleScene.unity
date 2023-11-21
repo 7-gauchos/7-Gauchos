@@ -555,6 +555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4896679fb7bf567439ee9d5cc6ee7aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Mision_Elegida: {fileID: 11400000, guid: 2ef73fbca41165c44b22f1624415df4a, type: 2}
   botonContinuar_: {fileID: 1814558025}
   Lista_Paneles_Personajes:
   - {fileID: 755387558}
