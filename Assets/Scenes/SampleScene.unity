@@ -1767,6 +1767,9 @@ MonoBehaviour:
   nombre: Pachora
   multiplicadorDinero: 1
   felicidad: 0
+  descripcion: 
+  dineroInicial: 0
+  sprite: {fileID: 0}
   dineroObtenido: 0
 --- !u!1 &814954039
 GameObject:
@@ -4324,6 +4327,9 @@ MonoBehaviour:
   nombre: Pachora
   multiplicadorDinero: 1
   felicidad: 0
+  descripcion: 
+  dineroInicial: 0
+  sprite: {fileID: 0}
   dineroObtenido: 0
 --- !u!114 &1733286122
 MonoBehaviour:
@@ -14387,6 +14393,9 @@ MonoBehaviour:
   nombre: Pachora
   multiplicadorDinero: 1
   felicidad: 0
+  descripcion: 
+  dineroInicial: 0
+  sprite: {fileID: 0}
   dineroObtenido: 0
 --- !u!114 &1804826386
 MonoBehaviour:
