@@ -27,18 +27,17 @@ public class MenuInicalBotones : MonoBehaviour
         Application.Quit();
     }
 
-    public void OnToogleButton()
+    // Permite reproducir o parar la musica de fondo
+    // Mejora para proxima version, se pueda regular el volumen desde el mismo boton
+    public void OnToogleButton(AudioSource audioBackground)
     {
-        Debug.Log("Toogle Button Volumen");
-        AudioSource audioSource = GetComponent<AudioSource>();
-
-        if (audioSource.isPlaying)
+        if (audioBackground.isPlaying)
         {
-            audioSource.Stop();
+            audioBackground.Stop();
         }
         else
         {
-            audioSource.Play();  
+            audioBackground.Play();  
         }
     }
 }
