@@ -23,7 +23,7 @@ public class Game : MonoBehaviour {
     [SerializeField] ContadorDinero text_Dinero_Conjunto;
     [SerializeField] TextMeshProUGUI texto_Dias;                // Texto para Dias en el juego
     private int dias_pasados;                                   // variable int para Dias
-    private int dinero_Total_acumulado;                                   // Variable int para DineroTotal Acumulado.
+    [SerializeField] private int dinero_Total_acumulado=0;                         // Variable int para DineroTotal Acumulado.
 
     private void Awake() {
         // boton continuar inicia desactivado
@@ -80,7 +80,8 @@ public class Game : MonoBehaviour {
             // Paso 2) se separan de ellas 
             elem.transform.GetComponent<Drop>().QuitarHijaPorPasoTurno();
             auxInt += elem.transform.GetComponent<Personaje>().dineroObtenido;
-            dinero_Total_acumulado += auxInt;
+            dinero_Total_acumulado = auxInt;
+            Debug.Log("Acumulado:" +dinero_Total_acumulado);
         }
         // Paso 3) Sumo lo recaudado
         StartCoroutine(text_Dinero_Conjunto.EfectoDeCambio(auxInt - dineroBase, dineroBase));
@@ -133,9 +134,11 @@ public class Game : MonoBehaviour {
 
         // Condicion Victoria
         if (dinero_Total_acumulado >= dinero_mision_objetivo) {
+            Time.timeScale = 0f; // Para el tiempo
             SceneManager.LoadScene("Victoria");
             // Condicion de Derrota
-        } else if (dias_pasados <= dias_mision_objetivo || dinero_Total_acumulado <= 0) {
+        } else if (dias_pasados >= dias_mision_objetivo || dinero_Total_acumulado <= 0) {
+            Time.timeScale = 0f; // Para el tiempo
             SceneManager.LoadScene("GameOver");
 
         }

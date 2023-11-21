@@ -14393,8 +14393,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: Pachora
-  multiplicadorDinero: 1
-  felicidad: 0
+  multiplicadorDinero: 2
+  felicidad: -1
   descripcion: 
   dineroInicial: 0
   sprite: {fileID: 0}
