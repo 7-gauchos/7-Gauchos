@@ -14,17 +14,17 @@ public class Game : MonoBehaviour {
     [SerializeField] GameObject prefabCartaAccion;              // Prefabricado de la Carta Accion
     [SerializeField] Canvas canvasPadre;                        // Padre original de las cartas
     [SerializeField] ContadorDinero text_Dinero_Conjunto;
-
+    [SerializeField] TextMeshProUGUI texto_Dias;                // Texto para Dias en el juego
+    private int dias_pasados;               // variable int para Dias
     private void Awake() {
         // boton continuar inicia desactivado
         botonContinuar_.gameObject.SetActive(false);
-        
+
     }
 
     void Start() {
         int dineroArranque = 0;
-        foreach (var elem in Lista_Paneles_Personajes)
-        {
+        foreach (var elem in Lista_Paneles_Personajes) {
             dineroArranque += elem.transform.GetComponent<Personaje>().dineroObtenido;
         }
         text_Dinero_Conjunto.setDinero(dineroArranque);
@@ -41,9 +41,16 @@ public class Game : MonoBehaviour {
                 botonContinuar_.gameObject.SetActive(false);
             }
         }
+        if (texto_Dias != null) {
+            texto_Dias.text = dias_pasados.ToString();
+        }
+
     }
     //Esto implica crear nuevas cartas y asociar a la lista de "CARTAS" los nuevos sprites y valores. 
-    public void PasarDia(){ 
+    public void PasarDia() {
+        // Aumenta dias en 1
+        dias_pasados += 1;
+
         int auxInt = 0;
         int dineroBase = 0;
         // Paso 1) Los personajes realizan las acciones
@@ -51,13 +58,13 @@ public class Game : MonoBehaviour {
             dineroBase += elem.transform.GetComponent<Personaje>().dineroObtenido;
             var costo_Fel = elem.transform.GetComponent<Drop>().transform.GetChild(0).GetComponent<Accion>().Costo_felicidad;
             var dinero = elem.transform.GetComponent<Drop>().transform.GetChild(0).GetComponent<Accion>().Dinero;
-            elem.transform.GetComponent<Personaje>().HacerAccion(dinero,costo_Fel);
+            elem.transform.GetComponent<Personaje>().HacerAccion(dinero, costo_Fel);
             // Paso 2) se separan de ellas 
             elem.transform.GetComponent<Drop>().QuitarHijaPorPasoTurno();
-            auxInt+=elem.transform.GetComponent<Personaje>().dineroObtenido;
+            auxInt += elem.transform.GetComponent<Personaje>().dineroObtenido;
         }
         // Paso 3) Sumo lo recaudado
-        StartCoroutine(text_Dinero_Conjunto.EfectoDeCambio(auxInt-dineroBase, dineroBase));
+        StartCoroutine(text_Dinero_Conjunto.EfectoDeCambio(auxInt - dineroBase, dineroBase));
         // Paso 4) Se crean nuevas cartas de Accion 
         List<GameObject> nuevaLista = new List<GameObject>();
         foreach (var elem in Lista_CARTAS_Acciones_) {
@@ -77,16 +84,14 @@ public class Game : MonoBehaviour {
         for (int i = Lista_CARTAS_Acciones_.Count - 1; i >= 0; i--) {
             Destroy(Lista_CARTAS_Acciones_[i]);
             Lista_CARTAS_Acciones_.RemoveAt(i);
-        } 
+        }
         // Se actualiza la lista
         Lista_CARTAS_Acciones_ = nuevaLista;
 
         StartCoroutine(aparecerIndividualmente());
 
-        IEnumerator aparecerIndividualmente()
-        {
-            for (int i = 0; i < Lista_CARTAS_Acciones_.Count; i++)
-            {
+        IEnumerator aparecerIndividualmente() {
+            for (int i = 0; i < Lista_CARTAS_Acciones_.Count; i++) {
                 yield return new WaitForSecondsRealtime(0.5f);
                 Lista_CARTAS_Acciones_[i].SetActive(true);
                 Lista_CARTAS_Acciones_[i].GetComponent<Animator>().Play("caida");
