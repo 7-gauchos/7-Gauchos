@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class SeleccionPersonajes : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class SeleccionPersonajes : MonoBehaviour
     public List<Personaje> personajesEnEquipo = new List<Personaje>();
     public GameObject botonAgregar;
     public GameObject botonQuitar;
+    public GameObject botonContinuar;
     public TMP_Text MontoInicialxEquipo;
 
 
@@ -34,7 +36,8 @@ public class SeleccionPersonajes : MonoBehaviour
         for (int i = 0; i < personajesEnUIEquipo.Length; i++)
         {
             personajesEnUIEquipo[i].SetActive(false);
-        }
+        }        
+
     }
 
     // Update is called once per frame
@@ -60,6 +63,7 @@ public class SeleccionPersonajes : MonoBehaviour
                 botonQuitar.SetActive(false);
             }
         }
+        botonContinuar.SetActive(personajesEnEquipo.Count == 3);
     }
 
     public void test(int i)
@@ -100,5 +104,10 @@ public class SeleccionPersonajes : MonoBehaviour
             personajesEnEquipo.Remove(personajeEnPantalla);
         }
 
+    }
+
+    public void IrAPantallaSeleccionMision()
+    {
+        SceneManager.LoadScene(2);
     }
 }
