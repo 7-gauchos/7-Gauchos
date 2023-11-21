@@ -567,6 +567,7 @@ MonoBehaviour:
   prefabCartaAccion: {fileID: 4132277161399671156, guid: c7e070966889f0d4ca37d26196385519, type: 3}
   canvasPadre: {fileID: 1595863467}
   text_Dinero_Conjunto: {fileID: 1412830616}
+  texto_Dias: {fileID: 1417483132}
 --- !u!4 &318722434
 Transform:
   m_ObjectHideFlags: 0
@@ -1767,6 +1768,9 @@ MonoBehaviour:
   nombre: Pachora
   multiplicadorDinero: 1
   felicidad: 0
+  descripcion: 
+  dineroInicial: 0
+  sprite: {fileID: 0}
   dineroObtenido: 0
 --- !u!1 &814954039
 GameObject:
@@ -4324,6 +4328,9 @@ MonoBehaviour:
   nombre: Pachora
   multiplicadorDinero: 1
   felicidad: 0
+  descripcion: 
+  dineroInicial: 0
+  sprite: {fileID: 0}
   dineroObtenido: 0
 --- !u!114 &1733286122
 MonoBehaviour:
@@ -14387,6 +14394,9 @@ MonoBehaviour:
   nombre: Pachora
   multiplicadorDinero: 1
   felicidad: 0
+  descripcion: 
+  dineroInicial: 0
+  sprite: {fileID: 0}
   dineroObtenido: 0
 --- !u!114 &1804826386
 MonoBehaviour:
