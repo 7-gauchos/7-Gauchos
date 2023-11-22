@@ -4,8 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour {
+
+    // Variables Eventos y constantes
+    [SerializeField] Evento_Elegir_Mision Mision_Elegida;
+    private int dias_mision_objetivo;                           // Variable de dias a cumplir la mision
+    private int dinero_mision_objetivo;                         // Variable de dinero a cumplir la mision
+
     // Variables de Game
     [SerializeField] Button botonContinuar_;                    // Boton Continuar
     [SerializeField] List<GameObject> Lista_Paneles_Personajes; // Lista de Paneles P..
@@ -15,14 +22,25 @@ public class Game : MonoBehaviour {
     [SerializeField] Canvas canvasPadre;                        // Padre original de las cartas
     [SerializeField] ContadorDinero text_Dinero_Conjunto;
     [SerializeField] TextMeshProUGUI texto_Dias;                // Texto para Dias en el juego
-    private int dias_pasados;               // variable int para Dias
+    private int dias_pasados;                                   // variable int para Dias
+    [SerializeField] private int dinero_Total_acumulado=0;                         // Variable int para DineroTotal Acumulado.
+
     private void Awake() {
         // boton continuar inicia desactivado
         botonContinuar_.gameObject.SetActive(false);
 
+        // Suscripcion a evento Mision 
+        Mision_Elegida.Datos_De_Mision += Fijar_Datos_Mision;
+
     }
 
     void Start() {
+
+        // ========== PROVICIONAL SI NO HAY ESCENA DE MISION QUE INVOQUE ELEGIR_MISION
+        dias_mision_objetivo = 15;
+        dinero_mision_objetivo = 150;
+        // ==================================================
+
         int dineroArranque = 0;
         foreach (var elem in Lista_Paneles_Personajes) {
             dineroArranque += elem.transform.GetComponent<Personaje>().dineroObtenido;
@@ -65,9 +83,15 @@ public class Game : MonoBehaviour {
             // Paso 2) se separan de ellas 
             elem.transform.GetComponent<Drop>().QuitarHijaPorPasoTurno();
             auxInt += elem.transform.GetComponent<Personaje>().dineroObtenido;
+            dinero_Total_acumulado = auxInt;
+            Debug.Log("Acumulado:" +dinero_Total_acumulado);
         }
         // Paso 3) Sumo lo recaudado
         StartCoroutine(text_Dinero_Conjunto.EfectoDeCambio(auxInt - dineroBase, dineroBase));
+
+        // Paso 3.1) Verifico condicion de Derrota o Victoria
+        Condicion_Victoria_Derrota();
+
         // Paso 4) Se crean y destruyen cartas de Accion 
         CreacionDestruccionCartas();
 
@@ -106,5 +130,23 @@ public class Game : MonoBehaviour {
         }
         // Se actualiza la lista
         Lista_CARTAS_Acciones_ = nuevaLista;
+    }
+
+    // Metodo set invocado desde Escena Mision
+    private void Fijar_Datos_Mision(int dinero, int dias) {
+        dinero_mision_objetivo = dinero;
+        dias_mision_objetivo = dias;
+    }
+
+    private void Condicion_Victoria_Derrota() {
+
+        // Condicion Victoria
+        if (dinero_Total_acumulado >= dinero_mision_objetivo) {
+            SceneManager.LoadScene("Victoria");
+            // Condicion de Derrota
+        } else if (dias_pasados >= dias_mision_objetivo || dinero_Total_acumulado <= 0) {
+            SceneManager.LoadScene("GameOver");
+
+        }
     }
 }
