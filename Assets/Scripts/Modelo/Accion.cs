@@ -28,8 +28,7 @@ public class Accion : MonoBehaviour {
 
     private GeneratorQuote generadorFrases;
 
-
-    private void Start() {
+    public void Crear_Carta(int Felicidad_Jugador) {
         generadorFrases = new GeneratorQuote();
 
         int random = Random.Range(0, 101);
@@ -38,20 +37,23 @@ public class Accion : MonoBehaviour {
                 // generar Trabajo
                 tipoAccion = "Trabajo";
                 costo_felicidad = (int)(Random.Range(MIN_Felicidad, 0));
+                costo_felicidad += Felicidad_Jugador; // Se puede hacer un Clamp 
                 dinero = (int)(Random.Range(0, MAX_Dinero + 1));
                 descripcion = generadorFrases.DevolverFrase(tipoAccion, dinero, MIN_Dinero, MAX_Dinero, costo_felicidad, MIN_Felicidad, MAX_Felicidad);
             } else {
                 // generar Ocio
                 tipoAccion = "Ocio";
                 costo_felicidad = (int)(Random.Range(0, MAX_Felicidad + 1));
+                costo_felicidad += Felicidad_Jugador; // Se puede hacer un Clamp 
                 dinero = (int)(Random.Range(MIN_Dinero, 0));
                 descripcion = generadorFrases.DevolverFrase(tipoAccion, dinero, MIN_Dinero, MAX_Dinero, costo_felicidad, MIN_Felicidad, MAX_Felicidad);
             }
-          
+
         } else if (random < 95) {
             // generar Descanso
             tipoAccion = "Descanso";
             costo_felicidad = (int)(Random.Range((int)(MIN_Felicidad / 2), (int)(MAX_Felicidad / 2) + 1));
+            costo_felicidad += Felicidad_Jugador; // Se puede hacer un Clamp 
             dinero = (int)(Random.Range((int)(MIN_Dinero / 2), (int)(MAX_Dinero / 2) + 1));
             descripcion = generadorFrases.DevolverFrase(tipoAccion, dinero, MIN_Dinero, MAX_Dinero, costo_felicidad, MIN_Felicidad, MAX_Felicidad);
 
@@ -61,6 +63,7 @@ public class Accion : MonoBehaviour {
             tipoAccion = "Suerte";
 
             costo_felicidad = (int)(Random.Range((int)(MAX_Felicidad / 2), (int)(MAX_Felicidad) + 1));
+            costo_felicidad += Felicidad_Jugador; // Se puede hacer un Clamp 
             dinero = (int)(Random.Range((int)(MAX_Dinero / 2), (int)(MAX_Dinero) + 1));
             descripcion = generadorFrases.DevolverFrase(tipoAccion, dinero, MIN_Dinero, MAX_Dinero, costo_felicidad, MIN_Felicidad, MAX_Felicidad);
 
@@ -69,6 +72,7 @@ public class Accion : MonoBehaviour {
             tipoAccion = "Catastrofe";
             //Revisar
             costo_felicidad = (int)(Random.Range((int)(MIN_Felicidad), (int)(MIN_Felicidad / 2) + 1));
+            costo_felicidad += Felicidad_Jugador; // Se puede hacer un Clamp 
             dinero = (int)(Random.Range((int)(MIN_Dinero), (int)(MIN_Dinero / 2) + 1));
             descripcion = generadorFrases.DevolverFrase(tipoAccion, dinero, MIN_Dinero, MAX_Dinero, costo_felicidad, MIN_Felicidad, MAX_Felicidad);
 
@@ -77,7 +81,7 @@ public class Accion : MonoBehaviour {
         // Propio del Awake
         if (texto_felicidad != null && texto_dinero != null) {
             texto_dinero.text = dinero.ToString();
-            texto_felicidad.text = costo_felicidad.ToString();            
+            texto_felicidad.text = costo_felicidad.ToString();
         }
         // Carga la imagen desde la carpeta
 
@@ -90,8 +94,7 @@ public class Accion : MonoBehaviour {
         Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
         imageComponent.sprite = sprite;
 
-
-    } // Fin Start
+    }
     // Método para cargar una textura desde la ruta
     private Texture2D LoadTexture(string path) {
         byte[] fileData = System.IO.File.ReadAllBytes(path);
@@ -99,4 +102,5 @@ public class Accion : MonoBehaviour {
         texture.LoadImage(fileData); // Esta línea convierte los datos de la imagen en la textura
         return texture;
     }
+
 } // Fin Clase
