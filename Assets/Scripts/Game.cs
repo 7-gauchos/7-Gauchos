@@ -89,8 +89,7 @@ public class Game : MonoBehaviour {
             GameObject nuevaCarta = Instantiate(prefabCartaAccion);
             RectTransform rectTransformElem = elem.transform.GetComponent<RectTransform>();
 
-            nuevaCarta.GetComponent<Accion>().Crear_Carta(Lista_Paneles_Personajes[IndicePersonaje].GetComponent<Personaje>().felicidad);
-            IndicePersonaje += 1;
+            nuevaCarta.GetComponent<Accion>().Crear_Carta(Lista_Paneles_Personajes[IndicePersonaje++].GetComponent<Personaje>().felicidad);
 
             nuevaCarta.transform.SetParent(canvasPadre.transform);
             nuevaCarta.transform.position = elem.transform.GetComponent<Carta_Accion>().initialPosition;
