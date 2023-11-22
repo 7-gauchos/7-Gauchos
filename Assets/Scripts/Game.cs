@@ -13,21 +13,29 @@ public class Game : MonoBehaviour {
     private int dias_mision_objetivo;                           // Variable de dias a cumplir la mision
     private int dinero_mision_objetivo;                         // Variable de dinero a cumplir la mision
 
+    // Variable para Animacion Cortina                          
+    [SerializeField] private GameObject objeto_Cortina;
     // Variables de Game
     [SerializeField] Button botonContinuar_;                    // Boton Continuar
     [SerializeField] List<GameObject> Lista_Paneles_Personajes; // Lista de Paneles P..
     [SerializeField] List<GameObject> Lista_CARTAS_Acciones_;   // Lista contenedora de Acciones 
 
     [SerializeField] GameObject prefabCartaAccion;              // Prefabricado de la Carta Accion
-    [SerializeField] Canvas canvasPadre;                        // Padre original de las cartas
+    [SerializeField] GameObject objetoPadre_DeCartas;           // Padre original de las cartas
     [SerializeField] ContadorDinero text_Dinero_Conjunto;
     [SerializeField] TextMeshProUGUI texto_Dias;                // Texto para Dias en el juego
     private int dias_pasados;                                   // variable int para Dias
-    [SerializeField] private int dinero_Total_acumulado=0;                         // Variable int para DineroTotal Acumulado.
+    [SerializeField] private int dinero_Total_acumulado=0;      // Variable int para DineroTotal Acumulado.
+
+
 
     private void Awake() {
         // boton continuar inicia desactivado
         botonContinuar_.gameObject.SetActive(false);
+
+        // Cortina inicia desactivada
+        objeto_Cortina.SetActive(false);
+
 
         // Suscripcion a evento Mision 
         Mision_Elegida.Datos_De_Mision += Fijar_Datos_Mision;
@@ -69,6 +77,9 @@ public class Game : MonoBehaviour {
     }
     //Esto implica crear nuevas cartas y asociar a la lista de "CARTAS" los nuevos sprites y valores. 
     public void PasarDia() {
+        // Efecto de Cortina
+        Asignar_DescripcionCartas_ACortina();
+
         // Aumenta dias en 1
         dias_pasados += 1;
 
@@ -105,6 +116,7 @@ public class Game : MonoBehaviour {
             }
         }
 
+
     }
     public void CreacionDestruccionCartas() {
         List<GameObject> nuevaLista = new List<GameObject>();
@@ -115,7 +127,7 @@ public class Game : MonoBehaviour {
 
             nuevaCarta.GetComponent<Accion>().Crear_Carta(Lista_Paneles_Personajes[IndicePersonaje++].GetComponent<Personaje>().felicidad);
 
-            nuevaCarta.transform.SetParent(canvasPadre.transform);
+            nuevaCarta.transform.SetParent(objetoPadre_DeCartas.transform);
             nuevaCarta.transform.position = elem.transform.GetComponent<Carta_Accion>().initialPosition;
             nuevaCarta.transform.localScale = Vector3.one;
             nuevaCarta.GetComponent<RectTransform>().sizeDelta = rectTransformElem.sizeDelta;
@@ -149,4 +161,22 @@ public class Game : MonoBehaviour {
 
         }
     }
-}
+
+
+    private void Asignar_DescripcionCartas_ACortina() {
+        if (objeto_Cortina.activeSelf == false) {
+            objeto_Cortina.SetActive(true);
+        }
+        // El orden en la cortina siempre es: Pachorra | Cacha | el otro se corresponde con posicion 0,1,2 en la listaPersonajes
+        string[] descripciones = new string[Lista_Paneles_Personajes.Count];
+        string[] tiposAcciones = new string[Lista_Paneles_Personajes.Count];
+        int i = 0;
+        foreach (var elem in Lista_Paneles_Personajes) {
+            descripciones[i] = elem.GetComponent<Drop>().GetComponentInChildren<Accion>().DevolverDescripcion();
+            tiposAcciones[i++] = elem.GetComponent<Drop>().GetComponentInChildren<Accion>().DevolverTipoAcciones();
+        }
+
+        objeto_Cortina.GetComponent<CortinaCambioDia>().AsignarElementos(descripciones, tiposAcciones);
+        objeto_Cortina.GetComponent<CortinaCambioDia>().CerrarElDia(); // Llamar a la cortina
+    }
+} // Fin clase
