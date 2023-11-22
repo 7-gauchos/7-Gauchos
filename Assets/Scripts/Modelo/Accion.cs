@@ -103,4 +103,12 @@ public class Accion : MonoBehaviour {
         return texture;
     }
 
+    public string DevolverDescripcion() {
+        return descripcion;
+    }
+
+    public string DevolverTipoAcciones() {
+        return tipoAccion;
+    }
+
 } // Fin Clase
