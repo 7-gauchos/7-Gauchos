@@ -15,7 +15,7 @@ public class Menu : MonoBehaviour
     // Called when we click the "Credits" button.
     public void OnCreditsButton()
     {
-        Debug.Log("Créditos");
+        Debug.Log("CrÃ©ditos");
         SceneManager.LoadScene(4);
     }
     // Called when we click the "Quit" button.
@@ -25,4 +25,9 @@ public class Menu : MonoBehaviour
         Application.Quit();
     }
 
+    public void PlayMainScreen()
+    {
+        Debug.Log("MainScreen");
+        SceneManager.LoadScene(3);
+    }
 }
