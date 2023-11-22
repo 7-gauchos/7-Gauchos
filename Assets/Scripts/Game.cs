@@ -142,11 +142,9 @@ public class Game : MonoBehaviour {
 
         // Condicion Victoria
         if (dinero_Total_acumulado >= dinero_mision_objetivo) {
-            Time.timeScale = 0f; // Para el tiempo
             SceneManager.LoadScene("Victoria");
             // Condicion de Derrota
         } else if (dias_pasados >= dias_mision_objetivo || dinero_Total_acumulado <= 0) {
-            Time.timeScale = 0f; // Para el tiempo
             SceneManager.LoadScene("GameOver");
 
         }
