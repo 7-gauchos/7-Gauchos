@@ -28,6 +28,9 @@ public class Game : MonoBehaviour {
             dineroArranque += elem.transform.GetComponent<Personaje>().dineroObtenido;
         }
         text_Dinero_Conjunto.setDinero(dineroArranque);
+
+        CreacionDestruccionCartas();
+    
     }
 
     void Update() {
@@ -65,28 +68,8 @@ public class Game : MonoBehaviour {
         }
         // Paso 3) Sumo lo recaudado
         StartCoroutine(text_Dinero_Conjunto.EfectoDeCambio(auxInt - dineroBase, dineroBase));
-        // Paso 4) Se crean nuevas cartas de Accion 
-        List<GameObject> nuevaLista = new List<GameObject>();
-        foreach (var elem in Lista_CARTAS_Acciones_) {
-            GameObject nuevaCarta = Instantiate(prefabCartaAccion);
-            RectTransform rectTransformElem = elem.transform.GetComponent<RectTransform>();
-
-            nuevaCarta.transform.SetParent(canvasPadre.transform);
-            nuevaCarta.transform.position = elem.transform.GetComponent<Carta_Accion>().initialPosition;
-            nuevaCarta.transform.localScale = Vector3.one;
-            nuevaCarta.GetComponent<RectTransform>().sizeDelta = rectTransformElem.sizeDelta;
-            nuevaCarta.GetComponent<RectTransform>().anchoredPosition = rectTransformElem.anchoredPosition;
-
-            nuevaLista.Add(nuevaCarta);
-        }
-
-        // Se destruyen las viejas
-        for (int i = Lista_CARTAS_Acciones_.Count - 1; i >= 0; i--) {
-            Destroy(Lista_CARTAS_Acciones_[i]);
-            Lista_CARTAS_Acciones_.RemoveAt(i);
-        }
-        // Se actualiza la lista
-        Lista_CARTAS_Acciones_ = nuevaLista;
+        // Paso 4) Se crean y destruyen cartas de Accion 
+        CreacionDestruccionCartas();
 
         StartCoroutine(aparecerIndividualmente());
 
@@ -99,5 +82,29 @@ public class Game : MonoBehaviour {
         }
 
     }
+    public void CreacionDestruccionCartas() {
+        List<GameObject> nuevaLista = new List<GameObject>();
+        int IndicePersonaje = 0;
+        foreach (var elem in Lista_CARTAS_Acciones_) {
+            GameObject nuevaCarta = Instantiate(prefabCartaAccion);
+            RectTransform rectTransformElem = elem.transform.GetComponent<RectTransform>();
 
+            nuevaCarta.GetComponent<Accion>().Crear_Carta(Lista_Paneles_Personajes[IndicePersonaje++].GetComponent<Personaje>().felicidad);
+
+            nuevaCarta.transform.SetParent(canvasPadre.transform);
+            nuevaCarta.transform.position = elem.transform.GetComponent<Carta_Accion>().initialPosition;
+            nuevaCarta.transform.localScale = Vector3.one;
+            nuevaCarta.GetComponent<RectTransform>().sizeDelta = rectTransformElem.sizeDelta;
+            nuevaCarta.GetComponent<RectTransform>().anchoredPosition = rectTransformElem.anchoredPosition;
+
+            nuevaLista.Add(nuevaCarta);
+        }
+        // Se destruyen las viejas
+        for (int i = Lista_CARTAS_Acciones_.Count - 1; i >= 0; i--) {
+            Destroy(Lista_CARTAS_Acciones_[i]);
+            Lista_CARTAS_Acciones_.RemoveAt(i);
+        }
+        // Se actualiza la lista
+        Lista_CARTAS_Acciones_ = nuevaLista;
+    }
 }
