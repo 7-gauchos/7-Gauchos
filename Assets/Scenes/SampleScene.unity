@@ -555,6 +555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4896679fb7bf567439ee9d5cc6ee7aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Mision_Elegida: {fileID: 11400000, guid: 2ef73fbca41165c44b22f1624415df4a, type: 2}
   botonContinuar_: {fileID: 1814558025}
   Lista_Paneles_Personajes:
   - {fileID: 755387558}
@@ -567,6 +568,7 @@ MonoBehaviour:
   prefabCartaAccion: {fileID: 4132277161399671156, guid: c7e070966889f0d4ca37d26196385519, type: 3}
   canvasPadre: {fileID: 1595863467}
   text_Dinero_Conjunto: {fileID: 1412830616}
+  texto_Dias: {fileID: 1417483132}
 --- !u!4 &318722434
 Transform:
   m_ObjectHideFlags: 0
@@ -1767,6 +1769,9 @@ MonoBehaviour:
   nombre: Pachora
   multiplicadorDinero: 1
   felicidad: 0
+  descripcion: 
+  dineroInicial: 0
+  sprite: {fileID: 0}
   dineroObtenido: 0
 --- !u!1 &814954039
 GameObject:
@@ -4324,6 +4329,9 @@ MonoBehaviour:
   nombre: Pachora
   multiplicadorDinero: 1
   felicidad: 0
+  descripcion: 
+  dineroInicial: 0
+  sprite: {fileID: 0}
   dineroObtenido: 0
 --- !u!114 &1733286122
 MonoBehaviour:
@@ -14385,8 +14393,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: Pachora
-  multiplicadorDinero: 1
-  felicidad: 0
+  multiplicadorDinero: 2
+  felicidad: -1
+  descripcion: 
+  dineroInicial: 0
+  sprite: {fileID: 0}
   dineroObtenido: 0
 --- !u!114 &1804826386
 MonoBehaviour:
