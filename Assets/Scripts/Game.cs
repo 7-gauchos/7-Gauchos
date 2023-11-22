@@ -29,33 +29,8 @@ public class Game : MonoBehaviour {
         }
         text_Dinero_Conjunto.setDinero(dineroArranque);
 
-        // Provicional, En algun Merge a Develop , Esto deberia ser un metodo y no un chorizo Aca y en PasarTurno ===================
-        List<GameObject> nuevaLista = new List<GameObject>();
-        int IndicePersonaje = 0;
-        foreach (var elem in Lista_CARTAS_Acciones_) {
-            GameObject nuevaCarta = Instantiate(prefabCartaAccion);
-            RectTransform rectTransformElem = elem.transform.GetComponent<RectTransform>();
-
-            nuevaCarta.GetComponent<Accion>().Crear_Carta(Lista_Paneles_Personajes[IndicePersonaje].GetComponent<Personaje>().felicidad);
-            IndicePersonaje += 1;
-
-            nuevaCarta.transform.SetParent(canvasPadre.transform);
-            nuevaCarta.transform.position = elem.transform.GetComponent<Carta_Accion>().initialPosition;
-            nuevaCarta.transform.localScale = Vector3.one;
-            nuevaCarta.GetComponent<RectTransform>().sizeDelta = rectTransformElem.sizeDelta;
-            nuevaCarta.GetComponent<RectTransform>().anchoredPosition = rectTransformElem.anchoredPosition;
-
-            nuevaLista.Add(nuevaCarta);
-        }
-        // Se destruyen las viejas
-        for (int i = Lista_CARTAS_Acciones_.Count - 1; i >= 0; i--) {
-            Destroy(Lista_CARTAS_Acciones_[i]);
-            Lista_CARTAS_Acciones_.RemoveAt(i);
-        }
-        // Se actualiza la lista
-        Lista_CARTAS_Acciones_ = nuevaLista;
-
-        // ===================
+        CreacionDestruccionCartas();
+    
     }
 
     void Update() {
@@ -93,7 +68,21 @@ public class Game : MonoBehaviour {
         }
         // Paso 3) Sumo lo recaudado
         StartCoroutine(text_Dinero_Conjunto.EfectoDeCambio(auxInt - dineroBase, dineroBase));
-        // Paso 4) Se crean nuevas cartas de Accion 
+        // Paso 4) Se crean y destruyen cartas de Accion 
+        CreacionDestruccionCartas();
+
+        StartCoroutine(aparecerIndividualmente());
+
+        IEnumerator aparecerIndividualmente() {
+            for (int i = 0; i < Lista_CARTAS_Acciones_.Count; i++) {
+                yield return new WaitForSecondsRealtime(0.5f);
+                Lista_CARTAS_Acciones_[i].SetActive(true);
+                Lista_CARTAS_Acciones_[i].GetComponent<Animator>().Play("caida");
+            }
+        }
+
+    }
+    public void CreacionDestruccionCartas() {
         List<GameObject> nuevaLista = new List<GameObject>();
         int IndicePersonaje = 0;
         foreach (var elem in Lista_CARTAS_Acciones_) {
@@ -111,7 +100,6 @@ public class Game : MonoBehaviour {
 
             nuevaLista.Add(nuevaCarta);
         }
-
         // Se destruyen las viejas
         for (int i = Lista_CARTAS_Acciones_.Count - 1; i >= 0; i--) {
             Destroy(Lista_CARTAS_Acciones_[i]);
@@ -119,17 +107,5 @@ public class Game : MonoBehaviour {
         }
         // Se actualiza la lista
         Lista_CARTAS_Acciones_ = nuevaLista;
-
-        StartCoroutine(aparecerIndividualmente());
-
-        IEnumerator aparecerIndividualmente() {
-            for (int i = 0; i < Lista_CARTAS_Acciones_.Count; i++) {
-                yield return new WaitForSecondsRealtime(0.5f);
-                Lista_CARTAS_Acciones_[i].SetActive(true);
-                Lista_CARTAS_Acciones_[i].GetComponent<Animator>().Play("caida");
-            }
-        }
-
     }
-
 }
