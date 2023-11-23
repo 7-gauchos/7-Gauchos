@@ -21,6 +21,7 @@ public class SeleccionPersonajes : MonoBehaviour
     public GameObject botonAgregar;
     public GameObject botonQuitar;
     public GameObject botonContinuar;
+    public GameObject signoBloqueado;
     public TMP_Text MontoInicialxEquipo;
 
 
@@ -52,16 +53,28 @@ public class SeleccionPersonajes : MonoBehaviour
             dineroInicialEnPantalla.text = personajeEnPantalla.dineroInicial.ToString();
             imagenEnPantalla.GetComponent<Image>().sprite = personajeEnPantalla.sprite;
             imagenEnPantalla.GetComponent<Image>().enabled = true;
-            if (personajesEnEquipo.Contains(personajeEnPantalla))
+            if (!personajeEnPantalla.habilitado)
             {
+                signoBloqueado.SetActive(true);
                 botonAgregar.SetActive(false);
-                botonQuitar.SetActive(true);
+                botonQuitar.SetActive(false);
             }
             else
             {
-                botonAgregar.SetActive(true);
-                botonQuitar.SetActive(false);
+                if (personajesEnEquipo.Contains(personajeEnPantalla))
+                {
+                    botonAgregar.SetActive(false);
+                    botonQuitar.SetActive(true);
+                    signoBloqueado.SetActive(false);
+                }
+                else
+                {
+                    botonAgregar.SetActive(true);
+                    botonQuitar.SetActive(false);
+                    signoBloqueado.SetActive(false);
+                }
             }
+
         }
         botonContinuar.SetActive(personajesEnEquipo.Count == 3);
     }
