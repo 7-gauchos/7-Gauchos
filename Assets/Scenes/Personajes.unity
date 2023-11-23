@@ -396,6 +396,7 @@ MonoBehaviour:
   botonAgregar: {fileID: 436170844}
   botonQuitar: {fileID: 1360134415}
   botonContinuar: {fileID: 498856061}
+  signoBloqueado: {fileID: 1484792812}
   MontoInicialxEquipo: {fileID: 1649933650}
 --- !u!1 &275551727
 GameObject:
@@ -1809,9 +1810,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1462400842}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 127.5, y: -25}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 85, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1135191461
@@ -1928,6 +1929,7 @@ MonoBehaviour:
   dineroInicial: 300
   sprite: {fileID: 21300000, guid: 6c0491680ec43ec4783af9ee95bcdb24, type: 3}
   dineroObtenido: 0
+  habilitado: 1
 --- !u!1 &1155378343
 GameObject:
   m_ObjectHideFlags: 0
@@ -2727,9 +2729,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1462400842}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 42.5, y: -25}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 85, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1427320946
@@ -2847,6 +2849,7 @@ MonoBehaviour:
   dineroInicial: 400
   sprite: {fileID: 21300000, guid: c5eca34b2607b8a449f2d02529023e51, type: 3}
   dineroObtenido: 0
+  habilitado: 1
 --- !u!1 &1462400841
 GameObject:
   m_ObjectHideFlags: 0
@@ -2928,6 +2931,81 @@ MonoBehaviour:
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &1484792812
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1484792813}
+  - component: {fileID: 1484792815}
+  - component: {fileID: 1484792814}
+  m_Layer: 5
+  m_Name: SignoBloqueado
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1484792813
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484792812}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1684783986}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.0010219482, y: -29.199516}
+  m_SizeDelta: {x: 224.74, y: 212.9}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1484792814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484792812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 6805221085562554294512fb737f7262, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1484792815
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484792812}
+  m_CullTransparentMesh: 1
 --- !u!1 &1526567879
 GameObject:
   m_ObjectHideFlags: 0
@@ -3439,6 +3517,7 @@ RectTransform:
   m_Children:
   - {fileID: 282914665}
   - {fileID: 2127618623}
+  - {fileID: 1484792813}
   m_Father: {fileID: 1968670191}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3503,6 +3582,7 @@ MonoBehaviour:
   dineroInicial: 0
   sprite: {fileID: 0}
   dineroObtenido: 0
+  habilitado: 1
 --- !u!1 &1719760273
 GameObject:
   m_ObjectHideFlags: 0
@@ -3961,9 +4041,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1462400842}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 297.5, y: -25}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 85, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1996940927
@@ -4077,8 +4157,9 @@ MonoBehaviour:
   felicidad: 3
   descripcion: "Es un misterio. Nada se sabe de \xE9l. \xBFo ella?"
   dineroInicial: 1500
-  sprite: {fileID: 21300000, guid: d2f0891982b4f494bbf9ba6bd948f170, type: 3}
+  sprite: {fileID: 21300000, guid: e51c3eed1453151419ca223664be5117, type: 3}
   dineroObtenido: 0
+  habilitado: 0
 --- !u!1 &2005530763
 GameObject:
   m_ObjectHideFlags: 0
@@ -4113,9 +4194,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1462400842}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 212.5, y: -25}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 85, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2005530765
@@ -4233,6 +4314,7 @@ MonoBehaviour:
   dineroInicial: 300
   sprite: {fileID: 21300000, guid: f92a1cb354ab93a42995a81f765fb767, type: 3}
   dineroObtenido: 0
+  habilitado: 1
 --- !u!1 &2036524137
 GameObject:
   m_ObjectHideFlags: 0
