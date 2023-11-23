@@ -91,12 +91,17 @@ public class Game : MonoBehaviour {
             var costo_Fel = elem.transform.GetComponent<Drop>().transform.GetChild(0).GetComponent<Accion>().Costo_felicidad;
             var dinero = elem.transform.GetComponent<Drop>().transform.GetChild(0).GetComponent<Accion>().Dinero;
             elem.transform.GetComponent<Personaje>().HacerAccion(dinero, costo_Fel);
+
+
             // Paso 2) se separan de ellas 
             elem.transform.GetComponent<Drop>().QuitarHijaPorPasoTurno();
             auxInt += elem.transform.GetComponent<Personaje>().dineroObtenido;
             dinero_Total_acumulado = auxInt;
             Debug.Log("Acumulado:" +dinero_Total_acumulado);
         }
+        // Paso 2.1) Se modifican los Sliders de los Personajes
+        ModificarSlidersDEPersonajes();
+
         // Paso 3) Sumo lo recaudado
         StartCoroutine(text_Dinero_Conjunto.EfectoDeCambio(auxInt - dineroBase, dineroBase));
 
@@ -179,4 +184,12 @@ public class Game : MonoBehaviour {
         objeto_Cortina.GetComponent<CortinaCambioDia>().AsignarElementos(descripciones, tiposAcciones);
         objeto_Cortina.GetComponent<CortinaCambioDia>().CerrarElDia(); // Llamar a la cortina
     }
+
+    private void ModificarSlidersDEPersonajes() {
+        foreach(var elem in Lista_Paneles_Personajes) {
+            elem.GetComponent<ControlSliders>().CambioFelicidad = elem.GetComponent<Personaje>().felicidad;
+            elem.GetComponent<ControlSliders>().CambioProductividad = (int)elem.GetComponent<Personaje>().multiplicadorDinero;
+        }
+    }
+
 } // Fin clase
