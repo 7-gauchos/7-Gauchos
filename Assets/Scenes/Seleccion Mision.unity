@@ -1125,7 +1125,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1.12
   m_Text: "\n\nUn hermoso Viaje para \ntoda la familia, disfruta de\nlas increibles
-    playas de\nHAWAI\n\nObjetivo: Reunir $x\n\nTiempo: 1 Semana"
+    playas de\nHAWAI\n\nObjetivo: Reunir $ 150\n\nTiempo: 7 d\xEDas"
 --- !u!222 &1465649591
 CanvasRenderer:
   m_ObjectHideFlags: 0
