@@ -18,6 +18,8 @@ public class Personaje : MonoBehaviour
     private int min_Felicidad = -5;
     private int max_multiplicador = 5;
     private float min_multiplicador = 1 / 256;
+    public bool habilitado = true;
+
 
     // Logica propia de la clase 
 
