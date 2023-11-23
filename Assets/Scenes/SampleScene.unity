@@ -1322,7 +1322,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7535848139883069046, guid: b83713e1b81ff464abf9adfba83bd080, type: 3}
       propertyPath: multiplicadorDinero
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8251461751750980144, guid: b83713e1b81ff464abf9adfba83bd080, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12721,6 +12721,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7535848139883069046, guid: b83713e1b81ff464abf9adfba83bd080, type: 3}
+      propertyPath: felicidad
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8251461751750980144, guid: b83713e1b81ff464abf9adfba83bd080, type: 3}
       propertyPath: m_LocalPosition.x
       value: -21.000038
@@ -13311,11 +13315,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7535848139883069046, guid: b83713e1b81ff464abf9adfba83bd080, type: 3}
       propertyPath: felicidad
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7535848139883069046, guid: b83713e1b81ff464abf9adfba83bd080, type: 3}
       propertyPath: dineroInicial
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535848139883069046, guid: b83713e1b81ff464abf9adfba83bd080, type: 3}
+      propertyPath: multiplicadorDinero
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8251461751750980144, guid: b83713e1b81ff464abf9adfba83bd080, type: 3}
       propertyPath: m_LocalPosition.x
