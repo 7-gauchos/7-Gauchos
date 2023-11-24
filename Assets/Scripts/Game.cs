@@ -25,7 +25,7 @@ public class Game : MonoBehaviour {
     [SerializeField] ContadorDinero text_Dinero_Conjunto;
     [SerializeField] TextMeshProUGUI texto_Dias;                // Texto para Dias en el juego
     private int dias_pasados;                                   // variable int para Dias
-    [SerializeField] private int dinero_Total_acumulado=0;      // Variable int para DineroTotal Acumulado.
+    [SerializeField] private int dinero_Total_acumulado = 0;    // Variable int para DineroTotal Acumulado.
 
 
 
@@ -42,7 +42,7 @@ public class Game : MonoBehaviour {
 
         // Background del Panel => Transparente
         foreach (var elem in Lista_Paneles_Personajes) {
-            elem.GetComponent<Image>().color = new Color(255,255,255,0);
+            elem.GetComponent<Image>().color = new Color(255, 255, 255, 0);
         }
 
     }
@@ -53,6 +53,8 @@ public class Game : MonoBehaviour {
         dias_mision_objetivo = 14;
         dinero_mision_objetivo = 200;
         // ==================================================
+        texto_Dias.text = dias_mision_objetivo.ToString();
+        dias_pasados = 0;
 
         int dineroArranque = 0;
         foreach (var elem in Lista_Paneles_Personajes) {
@@ -76,7 +78,7 @@ public class Game : MonoBehaviour {
             }
         }
         if (texto_Dias != null) {
-            texto_Dias.text = dias_pasados.ToString();
+            texto_Dias.text = (dias_mision_objetivo-dias_pasados).ToString();
         }
 
     }
@@ -102,7 +104,7 @@ public class Game : MonoBehaviour {
             elem.transform.GetComponent<Drop>().QuitarHijaPorPasoTurno();
             auxInt += elem.transform.GetComponent<Personaje>().dineroObtenido;
             dinero_Total_acumulado = auxInt;
-            Debug.Log("Acumulado:" +dinero_Total_acumulado);
+            Debug.Log("Acumulado:" + dinero_Total_acumulado);
         }
         // Paso 2.1) Se modifican los Sliders de los Personajes
         ModificarSlidersDEPersonajes();
@@ -112,6 +114,8 @@ public class Game : MonoBehaviour {
 
         // Paso 3.1) Verifico condicion de Derrota o Victoria
         Condicion_Victoria_Derrota();
+        // Paso 3.2) Modifico el color del texto dias
+        CambiarColorTextoDias();
 
         // Paso 4) Se crean y destruyen cartas de Accion 
         CreacionDestruccionCartas();
@@ -166,12 +170,15 @@ public class Game : MonoBehaviour {
         if (dinero_Total_acumulado >= dinero_mision_objetivo) {
             SceneManager.LoadScene("Victoria");
             // Condicion de Derrota
-        } else if (dias_pasados >= dias_mision_objetivo || dinero_Total_acumulado <= 0) {
+        } else if (dias_mision_objetivo - dias_pasados <= 0 || dinero_Total_acumulado <= 0) {
             SceneManager.LoadScene("GameOver");
 
         }
     }
 
+    private void CambiarColorTextoDias(){
+        texto_Dias.color = (dias_mision_objetivo - dias_pasados) <= 7 ? (dias_mision_objetivo - dias_pasados)>3? Color.yellow : Color.red: Color.black;
+    }
 
     private void Asignar_DescripcionCartas_ACortina() {
         if (objeto_Cortina.activeSelf == false) {
