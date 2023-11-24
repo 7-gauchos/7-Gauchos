@@ -9,11 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 0fe0521fe02ad8a46b6cd585d518fc39
   - enabled: 1
-    path: Assets/Scenes/Personajes.unity
-    guid: 378e172721c7e9f408a71e6886936a98
+    path: Assets/Scenes/introduccion.unity
+    guid: 71bbdbc41c0e8814b8344d48796e1d8e
   - enabled: 1
-    path: Assets/Scenes/Mision.unity
-    guid: 312c58feccf7bd447bf3e434ea194b56
+    path: Assets/Scenes/Personajes.unity
+    guid: 759cab6458f412e44a21ce5799b842bb
+  - enabled: 1
+    path: Assets/Scenes/Seleccion Mision.unity
+    guid: cd6c18dd184cefd4aab1a0a7e85c6d81
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
