@@ -37,14 +37,14 @@ public class Accion : MonoBehaviour {
                 // generar Trabajo
                 tipoAccion = "Trabajo";
                 costo_felicidad = (int)(Random.Range(MIN_Felicidad, 0));
-                Mathf.Clamp(costo_felicidad + Felicidad_Jugador, MIN_Felicidad,MAX_Felicidad);
+                costo_felicidad = Mathf.Clamp(costo_felicidad + Felicidad_Jugador, MIN_Felicidad,MAX_Felicidad);
                 dinero = (int)(Random.Range(0, MAX_Dinero + 1));
                 descripcion = generadorFrases.DevolverFrase(tipoAccion, dinero, MIN_Dinero, MAX_Dinero, costo_felicidad, MIN_Felicidad, MAX_Felicidad);
             } else {
                 // generar Ocio
                 tipoAccion = "Ocio";
                 costo_felicidad = (int)(Random.Range(0, MAX_Felicidad + 1));
-                Mathf.Clamp(costo_felicidad + Felicidad_Jugador, MIN_Felicidad, MAX_Felicidad);
+                costo_felicidad = Mathf.Clamp(costo_felicidad + Felicidad_Jugador, MIN_Felicidad, MAX_Felicidad);
                 dinero = (int)(Random.Range(MIN_Dinero, 0));
                 descripcion = generadorFrases.DevolverFrase(tipoAccion, dinero, MIN_Dinero, MAX_Dinero, costo_felicidad, MIN_Felicidad, MAX_Felicidad);
             }
@@ -53,7 +53,7 @@ public class Accion : MonoBehaviour {
             // generar Descanso
             tipoAccion = "Descanso";
             costo_felicidad = (int)(Random.Range((int)(MIN_Felicidad / 2), (int)(MAX_Felicidad / 2) + 1));
-            Mathf.Clamp(costo_felicidad + Felicidad_Jugador, MIN_Felicidad, MAX_Felicidad);
+            costo_felicidad = Mathf.Clamp(costo_felicidad + Felicidad_Jugador, MIN_Felicidad, MAX_Felicidad);
                                   // Descanso da dinero?
             dinero = (int)(Random.Range((int)(MIN_Dinero / 2), (int)(MAX_Dinero / 2) + 1));
             descripcion = generadorFrases.DevolverFrase(tipoAccion, dinero, MIN_Dinero, MAX_Dinero, costo_felicidad, MIN_Felicidad, MAX_Felicidad);
@@ -64,7 +64,7 @@ public class Accion : MonoBehaviour {
             tipoAccion = "Suerte";
 
             costo_felicidad = (int)(Random.Range((int)(MAX_Felicidad / 2), (int)(MAX_Felicidad) + 1));
-            Mathf.Clamp(costo_felicidad + Felicidad_Jugador, MIN_Felicidad, MAX_Felicidad);
+            costo_felicidad = Mathf.Clamp(costo_felicidad + Felicidad_Jugador, MIN_Felicidad, MAX_Felicidad);
             dinero = (int)(Random.Range((int)(MAX_Dinero / 2), (int)(MAX_Dinero) + 1));
             descripcion = generadorFrases.DevolverFrase(tipoAccion, dinero, MIN_Dinero, MAX_Dinero, costo_felicidad, MIN_Felicidad, MAX_Felicidad);
 
@@ -73,7 +73,7 @@ public class Accion : MonoBehaviour {
             tipoAccion = "Catastrofe";
             //Revisar
             costo_felicidad = (int)(Random.Range((int)(MIN_Felicidad), (int)(MIN_Felicidad / 2) + 1));
-            Mathf.Clamp(costo_felicidad + Felicidad_Jugador, MIN_Felicidad, MAX_Felicidad);
+            costo_felicidad = Mathf.Clamp(costo_felicidad + Felicidad_Jugador, MIN_Felicidad, MAX_Felicidad);
             dinero = (int)(Random.Range((int)(MIN_Dinero), (int)(MIN_Dinero / 2) + 1));
             descripcion = generadorFrases.DevolverFrase(tipoAccion, dinero, MIN_Dinero, MAX_Dinero, costo_felicidad, MIN_Felicidad, MAX_Felicidad);
 

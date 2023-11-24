@@ -17,7 +17,7 @@ public class Personaje : MonoBehaviour
     private int max_Felicidad = 5;
     private int min_Felicidad = -5;
     private int max_multiplicador = 5;
-    private float min_multiplicador = 1 / 256;
+    private float min_multiplicador = 1;
     public bool habilitado = true;
 
 
