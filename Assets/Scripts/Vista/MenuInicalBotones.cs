@@ -17,7 +17,7 @@ public class MenuInicalBotones : MonoBehaviour
     {
         Debug.Log("Créditos");
         audioBackground.Play();
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(5);
     }
     // Called when we click the "Quit" button.
     public void OnQuitButton(AudioSource audioBackground)
