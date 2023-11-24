@@ -51,7 +51,7 @@ public class Game : MonoBehaviour {
 
         // ========== PROVICIONAL SI NO HAY ESCENA DE MISION QUE INVOQUE ELEGIR_MISION
         dias_mision_objetivo = 14;
-        dinero_mision_objetivo = 150;
+        dinero_mision_objetivo = 200;
         // ==================================================
 
         int dineroArranque = 0;
@@ -61,7 +61,7 @@ public class Game : MonoBehaviour {
         text_Dinero_Conjunto.setDinero(dineroArranque);
 
         CreacionDestruccionCartas();
-    
+        ModificarSlidersDEPersonajes();
     }
 
     void Update() {
