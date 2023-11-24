@@ -40,6 +40,11 @@ public class Game : MonoBehaviour {
         // Suscripcion a evento Mision 
         Mision_Elegida.Datos_De_Mision += Fijar_Datos_Mision;
 
+        // Background del Panel => Transparente
+        foreach (var elem in Lista_Paneles_Personajes) {
+            elem.GetComponent<Image>().color = new Color(255,255,255,0);
+        }
+
     }
 
     void Start() {
