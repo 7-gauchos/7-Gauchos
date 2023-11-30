@@ -28,7 +28,10 @@ public class CortinaCambioDia : MonoBehaviour
     {
         GetComponent<Animator>().Play("cierre"); // Baja el Telon => Se ve la presentacion
     }
-
+    public void OcultarCortina()
+    {
+        gameObject.SetActive(false);
+    }
     private int Indice_DeFondosSegunTipo(string tipoAccion) {
         // Segun como se agrego en el inspector es:
         switch (tipoAccion) {

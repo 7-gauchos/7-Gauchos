@@ -148,7 +148,9 @@ GameObject:
   - component: {fileID: 5866614202205090523}
   - component: {fileID: 5552738571609851794}
   - component: {fileID: 2969607535910711622}
+  - component: {fileID: 610609074100392493}
   - component: {fileID: 94089460010562409}
+  - component: {fileID: 4230070805978750929}
   m_Layer: 5
   m_Name: Carta_Accion 1
   m_TagString: Untagged
@@ -257,6 +259,18 @@ MonoBehaviour:
   initialPosition: {x: 0, y: 0}
   originalParent: {fileID: 0}
   dropping: {fileID: 0}
+--- !u!114 &610609074100392493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4132277161399671156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d8c1f7cbbbec844ca4d0990793aabd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &94089460010562409
 Animator:
   serializedVersion: 5
@@ -278,6 +292,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4230070805978750929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4132277161399671156}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 8, y: 8}
+  m_UseGraphicAlpha: 1
 --- !u!1 &4155655547101845386
 GameObject:
   m_ObjectHideFlags: 0
