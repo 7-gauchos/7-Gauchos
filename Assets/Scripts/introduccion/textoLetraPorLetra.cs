@@ -10,6 +10,7 @@ public class NewBehaviourScript : MonoBehaviour
     public float waitTime = 0.06f;
     public Button btnContinuar;
     public AudioSource audioTeclas;
+    public Sprite continuar;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,8 @@ public class NewBehaviourScript : MonoBehaviour
 
         // cuando termina de pasar las letras activa el boton para terminar
         audioTeclas.Stop();
-        btnContinuar.gameObject.SetActive(true);
+
+        // cambio la imagen de saltar a continuar
+        btnContinuar.image.sprite = continuar;
     }
 }

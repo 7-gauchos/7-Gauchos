@@ -500,6 +500,7 @@ MonoBehaviour:
   waitTime: 0.06
   btnContinuar: {fileID: 1614840279}
   audioTeclas: {fileID: 637591094}
+  continuar: {fileID: 21300000, guid: 02f46afde2fb76f469271a73330c2926, type: 3}
 --- !u!114 &853769708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -513,6 +514,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nroescena: 2
+  sndButton: {fileID: 0}
 --- !u!1 &922082312
 GameObject:
   m_ObjectHideFlags: 0
@@ -809,7 +811,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1614840278
 RectTransform:
   m_ObjectHideFlags: 0
@@ -905,7 +907,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 02f46afde2fb76f469271a73330c2926, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c280ef391b4514348a03f1300d1df1ff, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
