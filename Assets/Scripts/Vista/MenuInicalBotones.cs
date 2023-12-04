@@ -8,16 +8,13 @@ public class MenuInicalBotones : MonoBehaviour
 
     public void OnPlayButton(AudioSource audioBackground)
     {
-        Debug.Log("Jugar");
-        audioBackground.Play();
-        SceneManager.LoadScene(++escena);
+        StartCoroutine(ReproducirSonido(++escena,audioBackground));
     }
+    
     // Called when we click the "Credits" button.
     public void OnCreditsButton(AudioSource audioBackground)
     {
-        Debug.Log("Créditos");
-        audioBackground.Play();
-        SceneManager.LoadScene(5);
+        StartCoroutine(ReproducirSonido(5, audioBackground));
     }
     // Called when we click the "Quit" button.
     public void OnQuitButton(AudioSource audioBackground)
@@ -39,5 +36,18 @@ public class MenuInicalBotones : MonoBehaviour
         {
             audioBackground.Play();  
         }
+    }
+
+
+    private System.Collections.IEnumerator ReproducirSonido(int nroEscena, AudioSource audio)
+    {
+        // Reproduce el sonido
+        audio.Play();
+
+        // Espera hasta que el sonido haya terminado de reproducirse
+        yield return new WaitForSeconds(audio.clip.length);
+
+        // Carga la siguiente escena
+        SceneManager.LoadScene(nroEscena);
     }
 }

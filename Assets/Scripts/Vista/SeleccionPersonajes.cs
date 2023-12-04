@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering;
 
 public class SeleccionPersonajes : MonoBehaviour
 {
@@ -23,6 +24,9 @@ public class SeleccionPersonajes : MonoBehaviour
     public GameObject botonContinuar;
     public GameObject signoBloqueado;
     public TMP_Text MontoInicialxEquipo;
+    public AudioSource aubtnSeleccionPersonaje;
+    public AudioSource aubtnAgregarPersonaje;
+    public AudioSource aubtnQuitarPersonaje;
 
 
     // Start is called before the first frame update
@@ -46,6 +50,7 @@ public class SeleccionPersonajes : MonoBehaviour
     {
         if(personajeEnPantalla.nombre != "")
         {
+
             nombreEnPantalla.text = personajeEnPantalla.nombre;
             ModificadorDineroEnPantalla.text = personajeEnPantalla.multiplicadorDinero.ToString();
             MedidorFelicidadEnPantalla.text = personajeEnPantalla.felicidad.ToString();
@@ -82,19 +87,26 @@ public class SeleccionPersonajes : MonoBehaviour
     public void test(int i)
     {
         personajeEnPantalla = personajesSeleccionables[i];
+
+        // reproduce el sonido al hacer click sobre el personaje para elegirlo
+        aubtnSeleccionPersonaje.Play();
+
+
     }
 
     public void agregarPersonajeAlEquipo()
     {
         if (!personajesEnEquipo.Contains(personajeEnPantalla) && personajesEnEquipo.Count < 3)
         {
+            // play sonido al agregar el personaje
+            aubtnAgregarPersonaje.Play();
+
             personajesEnEquipo.Add(personajeEnPantalla);
             int i = personajesEnEquipo.IndexOf(personajeEnPantalla);
 
-
-                personajesEnUIEquipo[i].GetComponent<Image>().sprite = personajeEnPantalla.sprite;
-                personajesEnUIEquipo[i].SetActive(true);
-                MontoInicialxEquipo.text = (int.Parse(MontoInicialxEquipo.text) + personajeEnPantalla.dineroInicial).ToString();
+            personajesEnUIEquipo[i].GetComponent<Image>().sprite = personajeEnPantalla.sprite;
+            personajesEnUIEquipo[i].SetActive(true);
+            MontoInicialxEquipo.text = (int.Parse(MontoInicialxEquipo.text) + personajeEnPantalla.dineroInicial).ToString();
         }
 
     }
@@ -103,7 +115,9 @@ public class SeleccionPersonajes : MonoBehaviour
     {
         if (personajesEnEquipo.Contains(personajeEnPantalla))
         {
-            
+            // play sonido al quitar el personaje
+            aubtnQuitarPersonaje.Play();
+
             int i = personajesEnEquipo.IndexOf(personajeEnPantalla);
             while (i + 1 < personajesEnEquipo.Count)
             {

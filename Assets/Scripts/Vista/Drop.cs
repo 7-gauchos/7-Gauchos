@@ -9,10 +9,13 @@ public class Drop : MonoBehaviour, IDropHandler {
 
     [SerializeField] TextMeshProUGUI texto_dinero;
 
+    [SerializeField] AudioSource sndEfectoDrop;
 
     public void OnDrop(PointerEventData eventData) {
         var cartaPresionada = eventData.pointerDrag.transform.GetComponent<Carta_Accion>();
         if (!espacio_Ocupado_ && transform.childCount < 1) {
+            // ejecutar sonido de drop
+            sndEfectoDrop.Play();
             HacerAccionHija(cartaPresionada);
             Debug.Log("Una carta esta en el slot");
         }
