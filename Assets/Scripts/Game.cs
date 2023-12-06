@@ -126,7 +126,7 @@ public class Game : MonoBehaviour {
             for (int i = 0; i < Lista_CARTAS_Acciones_.Count; i++) {
                 yield return new WaitForSecondsRealtime(0.5f);
                 Lista_CARTAS_Acciones_[i].SetActive(true);
-                Lista_CARTAS_Acciones_[i].GetComponent<Animator>().Play("caida");
+                Lista_CARTAS_Acciones_[i].transform.GetChild(0).GetComponent<Animator>().Play("caida");
             }
         }
 
