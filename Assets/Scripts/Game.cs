@@ -16,6 +16,7 @@ public class Game : MonoBehaviour {
 
     // Variable para Animacion Cortina                          
     [SerializeField] private GameObject objeto_Cortina;
+
     // Variables de Game
     [SerializeField] Button botonContinuar_;                    // Boton Continuar
     [SerializeField] List<GameObject> Lista_Paneles_Personajes; // Lista de Paneles P..
@@ -27,6 +28,7 @@ public class Game : MonoBehaviour {
     [SerializeField] TextMeshProUGUI texto_Dias;                // Texto para Dias en el juego
     private int dias_pasados;                                   // variable int para Dias
     [SerializeField] private int dinero_Total_acumulado = 0;    // Variable int para DineroTotal Acumulado.
+    [SerializeField] AudioSource sndClickBoton;                 // Sonido del boton continuar
 
 
 
@@ -88,6 +90,9 @@ public class Game : MonoBehaviour {
     }
     //Esto implica crear nuevas cartas y asociar a la lista de "CARTAS" los nuevos sprites y valores. 
     public void PasarDia() {
+        // Sonido del boton
+        sndClickBoton.Play();
+
         // Efecto de Cortina
         Asignar_DescripcionCartas_ACortina();
 
