@@ -497,9 +497,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fraseCompleta: {fileID: 922082313}
   textoEscrito: {fileID: 1015717999}
+  tiempoDeDifuminacion: 2
   waitTime: 0.06
   btnContinuar: {fileID: 1614840279}
   audioTeclas: {fileID: 637591094}
+  continuar: {fileID: 21300000, guid: 02f46afde2fb76f469271a73330c2926, type: 3}
 --- !u!114 &853769708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -513,6 +515,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nroescena: 2
+  sndButton: {fileID: 0}
 --- !u!1 &922082312
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,16 +555,16 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "En un mundo donde la amistad es la fuerza m\xE1s poderosa, surge una historia
-    \xE9pica que une a un grupo de compa\xF1eros con un objetivo en com\xFAn.\r\n\r\nCon
+    \xE9pica que une a un grupo de compa\xF1eros con un objetivo en com\xFAn.\r\nCon
     lazos de amistad forjados en el fragor de la vida cotidiana, estos valientes
     compa\xF1eros se encuentran frente a un destino compartido. Solo la uni\xF3n
-    de sus habilidades y la fortaleza de su amistad pueden enfrentar este desafio. 
-    \r\n\r\nCada uno de ellos posee habilidades \xFAnicas, complementando las fortalezas
+    de sus habilidades y la fortaleza de su amistad pueden enfrentar este desafio.
+    \nCada uno de ellos posee habilidades \xFAnicas, complementando las fortalezas
     y debilidades de sus amigos. En este viaje, descubrir\xE1n sus pasiones, enfrentar\xE1n
     desaf\xEDos inimaginables y forjar\xE1n recuerdos que perdurar\xE1n a lo largo
-    de los tiempos.  \r\n\r\n\xBFEst\xE1n listos para enfrentar juntos la tormenta
-    que se avecina y demostrar que la amistad puede ser la luz que disipe incluso
-    la oscuridad m\xE1s profunda?"
+    de los tiempos.  \r\n\xBFEst\xE1n listos para enfrentar juntos la tormenta que
+    se avecina y demostrar que la amistad puede ser la luz que disipe incluso la
+    oscuridad m\xE1s profunda?"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -691,8 +694,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00012207, y: 65.265}
-  m_SizeDelta: {x: 800, y: 278.55}
+  m_AnchoredPosition: {x: 0, y: 65}
+  m_SizeDelta: {x: 700, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1015717999
 MonoBehaviour:
@@ -741,15 +744,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 1024
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -809,7 +812,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1614840278
 RectTransform:
   m_ObjectHideFlags: 0
@@ -905,7 +908,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 02f46afde2fb76f469271a73330c2926, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c280ef391b4514348a03f1300d1df1ff, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

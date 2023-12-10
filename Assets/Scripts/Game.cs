@@ -12,6 +12,7 @@ public class Game : MonoBehaviour {
     [SerializeField] Evento_Elegir_Mision Mision_Elegida;
     private int dias_mision_objetivo;                           // Variable de dias a cumplir la mision
     private int dinero_mision_objetivo;                         // Variable de dinero a cumplir la mision
+    [SerializeField] TextMeshProUGUI text_Dinero_deMision;      // Texto para el dinero de la mision
 
     // Variable para Animacion Cortina                          
     [SerializeField] private GameObject objeto_Cortina;
@@ -52,7 +53,10 @@ public class Game : MonoBehaviour {
         // ========== PROVICIONAL SI NO HAY ESCENA DE MISION QUE INVOQUE ELEGIR_MISION
         dias_mision_objetivo = 14;
         dinero_mision_objetivo = 200;
+
         // ==================================================
+        text_Dinero_deMision.text = "Dinero necesario:\n"+dinero_mision_objetivo.ToString();
+
         texto_Dias.text = dias_mision_objetivo.ToString();
         dias_pasados = 0;
 
