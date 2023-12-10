@@ -11,6 +11,7 @@ public class CortinaCambioDia : MonoBehaviour
     [SerializeField] TextMeshProUGUI[] personajesTextos;
     [SerializeField] RawImage[] personajesFondo;
     [SerializeField] Texture[] Fondos;
+    [SerializeField] AudioSource sndClickBoton;             // para reproducir el sonido de click del boton
 
     public void AsignarElementos(String[] textos, string[] tipos)
     {
@@ -22,6 +23,9 @@ public class CortinaCambioDia : MonoBehaviour
     }
     public void ContinuarElDia()
     {
+        // play el sonido del click del boton
+        sndClickBoton.Play();
+
         GetComponent<Animator>().Play("Abrir"); // Sube el Telon => Se va 
     }
     public void CerrarElDia()

@@ -9,7 +9,6 @@ public class Carta_Accion : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     [HideInInspector] public  Transform originalParent; // Nueva variable para almacenar el padre original.
     public Drop dropping;
 
-
     private void Start() {
         this.tag = "Carta";
         canvas = GetComponentInParent<Canvas>();
