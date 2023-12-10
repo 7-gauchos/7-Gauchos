@@ -30,7 +30,7 @@ public class Accion : MonoBehaviour {
 
     public void Crear_Carta(int Felicidad_Jugador) {
         generadorFrases = new GeneratorQuote();
-
+        Outline miOutline = transform.GetChild(0).GetComponent<Outline>();
         int random = Random.Range(0, 101);
         if (random < 80) {
             if (random < 50) {
@@ -39,10 +39,12 @@ public class Accion : MonoBehaviour {
                 costo_felicidad = (int)(Random.Range(MIN_Felicidad, 0));
                 costo_felicidad = Mathf.Clamp(costo_felicidad + Felicidad_Jugador, MIN_Felicidad,MAX_Felicidad);
                 dinero = (int)(Random.Range(0, MAX_Dinero + 1));
+                miOutline.effectColor = Color.black;
                 descripcion = generadorFrases.DevolverFrase(tipoAccion, dinero, MIN_Dinero, MAX_Dinero, costo_felicidad, MIN_Felicidad, MAX_Felicidad);
             } else {
                 // generar Ocio
                 tipoAccion = "Ocio";
+                miOutline.effectColor = Color.blue;
                 costo_felicidad = (int)(Random.Range(0, MAX_Felicidad + 1));
                 costo_felicidad = Mathf.Clamp(costo_felicidad + Felicidad_Jugador, MIN_Felicidad, MAX_Felicidad);
                 dinero = (int)(Random.Range(MIN_Dinero, 0));
@@ -57,7 +59,7 @@ public class Accion : MonoBehaviour {
                                   // Descanso da dinero?
             dinero = (int)(Random.Range((int)(MIN_Dinero / 2), (int)(MAX_Dinero / 2) + 1));
             descripcion = generadorFrases.DevolverFrase(tipoAccion, dinero, MIN_Dinero, MAX_Dinero, costo_felicidad, MIN_Felicidad, MAX_Felicidad);
-
+            miOutline.effectColor = Color.green;
 
         } else if (random < 98) {
             // generar Suerte
@@ -67,7 +69,7 @@ public class Accion : MonoBehaviour {
             costo_felicidad = Mathf.Clamp(costo_felicidad + Felicidad_Jugador, MIN_Felicidad, MAX_Felicidad);
             dinero = (int)(Random.Range((int)(MAX_Dinero / 2), (int)(MAX_Dinero) + 1));
             descripcion = generadorFrases.DevolverFrase(tipoAccion, dinero, MIN_Dinero, MAX_Dinero, costo_felicidad, MIN_Felicidad, MAX_Felicidad);
-
+            miOutline.effectColor = Color.yellow;
         } else {
             // generar Catastrofe (nombre interno Desastre)
             tipoAccion = "Catastrofe";
@@ -76,7 +78,7 @@ public class Accion : MonoBehaviour {
             costo_felicidad = Mathf.Clamp(costo_felicidad + Felicidad_Jugador, MIN_Felicidad, MAX_Felicidad);
             dinero = (int)(Random.Range((int)(MIN_Dinero), (int)(MIN_Dinero / 2) + 1));
             descripcion = generadorFrases.DevolverFrase(tipoAccion, dinero, MIN_Dinero, MAX_Dinero, costo_felicidad, MIN_Felicidad, MAX_Felicidad);
-
+            miOutline.effectColor = Color.red;
         }
 
         // Propio del Awake
@@ -89,11 +91,12 @@ public class Accion : MonoBehaviour {
         // Asigna la imagen al componente Image
 
         // Debug.Log(descripcion+" || "+transform.name.ToString() +" | "+tipoAccion);
-        Image imageComponent = GetComponent<Image>();
+        Image imageComponent = transform.GetChild(0).GetChild(0).GetComponent<Image>();
         string ruta = rutaSprite + tipoAccion + ".png";
         Texture2D texture = LoadTexture(ruta);
         Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
         imageComponent.sprite = sprite;
+       
 
     }
     // Método para cargar una textura desde la ruta
